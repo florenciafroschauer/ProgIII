@@ -1,3 +1,3 @@
 /out
 .idea
-*.iml
+*.imlgit push -u origin master

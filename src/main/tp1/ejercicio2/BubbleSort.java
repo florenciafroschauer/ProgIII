@@ -1,6 +1,6 @@
 package tp1.ejercicio2;
 
-public class BubbleSort {
+public class BubbleSort<T extends Comparable> {
 
     /**
      * a) El algoritmo de burbujeo recorre toda una Lista o Array comparando cada uno de los
