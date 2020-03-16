@@ -1,6 +1,6 @@
 package tp1.ejercicio2;
 
-public class SelectionSort {
+public class SelectionSort<T extends Comparable> {
 
     /**
      * El algoritmo de selección ordena un array encontrando reiteradamente el mínimo
@@ -49,7 +49,7 @@ public class SelectionSort {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    void sort(Comparable<T>[] array) {
+    public void sort(T[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -88,6 +88,18 @@ public class SelectionSort {
 
             sort(list, low + 1, high);
 
+        }
+    }
+
+    public void printIntArray(int[] array) {
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
+
+    public void printArray(Object[] array) {
+        for (Object o: array) {
+            System.out.println();
         }
     }
 }

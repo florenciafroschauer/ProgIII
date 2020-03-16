@@ -40,4 +40,10 @@ public class SearchAlgorithm {
         }
         return -1;
     }
+
+    public void printArray(int[] a) {
+        for (int i: a) {
+            System.out.println(a[i]);
+        }
+    }
 }

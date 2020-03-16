@@ -68,4 +68,16 @@ public class BubbleSort<T extends Comparable> {
             }
         }
     }
+
+    public void printIntArray(int[] array) {
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
+
+    public void printArray(Object[] array) {
+        for (Object o: array) {
+            System.out.println();
+        }
+    }
 }

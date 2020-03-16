@@ -1,6 +1,6 @@
 package tp1.ejercicio2;
 
-public class InsertionSort {
+public class InsertionSort<T extends Comparable> {
 
     /**
      * El índice i indica la posición del elemento actual en el array a ordenar. Comienza
@@ -46,7 +46,7 @@ public class InsertionSort {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    public void insertionSort(T[] array) {
+    public void insertionSortGeneric(T[] array) {
         for (int j = 1; j < array.length; j++) {
             T key = array[j];
             int i = j - 1;
@@ -55,6 +55,18 @@ public class InsertionSort {
                 i--;
             }
             array[i + 1] = key;
+        }
+    }
+
+    public void printIntArray(int[] array) {
+        for (int i : array) {
+            System.out.println(i);
+        }
+    }
+
+    public void printArray(Object[] array) {
+        for (Object o: array) {
+            System.out.println();
         }
     }
 }
