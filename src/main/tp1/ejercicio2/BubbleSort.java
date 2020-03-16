@@ -11,29 +11,31 @@ public class BubbleSort<T extends Comparable> {
      * posición correcta.
      */
 
-    public void bubbleSort(int[] a) {
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 1; j < a.length - i; j++) {
-                if (a[j] < a[i]) {
-                    int t = a[j - 1];
-                    a[j -1] = a[j];
-                    a[j] = t;
+    public void bubbleSort(int a[]) {
+        int n = a.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n - i - 1; j++)
+                if (a[j] > a[j + 1]) {
+                    // swap a[j+1] and a[i]
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                 }
-            }
         }
     }
 
     public int bubbleSortCounter(int[] a) {
         int counter = 0;
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 1; j < a.length - i; j++) {
-                if (a[j] < a[i]) {
-                    int t = a[j - 1];
-                    a[j -1] = a[j];
-                    a[j] = t;
+        int n = a.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n - i - 1; j++)
+                if (a[j] > a[j + 1]) {
+                    // swap arr[j+1] and arr[i]
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                     counter++;
                 }
-            }
         } return counter;
     }
 
@@ -42,14 +44,15 @@ public class BubbleSort<T extends Comparable> {
      */
 
     public void bubbleSort(String[] a) {
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 1; j < a.length - i; j++) {
+        int n = a.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n - i - 1; j++)
                 if (a[j].compareTo(a[j+1]) > 0) {
-                    String t = a[j - 1];
-                    a[j -1] = a[j];
-                    a[j] = t;
+                    // swap a[j+1] and a[i]
+                    String temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                 }
-            }
         }
     }
 
@@ -57,15 +60,16 @@ public class BubbleSort<T extends Comparable> {
      * e) Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    public void bubbleSort(T[] a) {
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 1; j < a.length - i; j++) {
+    public void genericBubbleSort(T[] a) {
+        int n = a.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n - i - 1; j++)
                 if (a[j].compareTo(a[j+1]) > 0) {
-                    T t = a[j - 1];
-                    a[j -1] = a[j];
-                    a[j] = t;
+                    // swap a[j+1] and a[i]
+                    T temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
                 }
-            }
         }
     }
 

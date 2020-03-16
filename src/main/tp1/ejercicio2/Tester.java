@@ -62,7 +62,7 @@ public class Tester {
 
         System.out.println("Generics Sort: ");
         String[] genericArray2 = {"a", "d", "b", "g", "c", "e", "f"};
-        bubbleSort.bubbleSort(genericArray2);
+        bubbleSort.genericBubbleSort(genericArray2);
         bubbleSort.printArray(genericArray2);
 
         System.out.println("---------------");
