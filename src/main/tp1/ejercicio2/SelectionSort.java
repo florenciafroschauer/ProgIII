@@ -14,13 +14,15 @@ public class SelectionSort {
     public void sort(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i + 1; j < array.length; j++)
-                if (array[j] < array[i]) {
-                    i = j;
-                    int temp = array[i];
-                    array[i] = array[i];
-                    array[i] = temp;
+            int minIndex = i;
+            for (int j = i+1; j < array.length; j++) {
+                if (array[j] < array[minIndex]){
+                    minIndex = j;
                 }
+            }
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
         }
     }
 
@@ -31,14 +33,15 @@ public class SelectionSort {
     public void sort(String[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j].compareTo(array[i]) > 0) {
-                    i = j;
-                    String temp = array[i];
-                    array[i] = array[i];
-                    array[i] = temp;
+            int minIndex = i;
+            for (int j = i+1; j < array.length; j++) {
+                if (array[j].compareTo(array[i]) < 0){
+                    minIndex = j;
                 }
             }
+            String temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
         }
     }
 
@@ -46,19 +49,45 @@ public class SelectionSort {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    void sort(Comparable<T>[] a) {
-        for (int i = 0; i < a.length - 1; i++) {
-            for (int j = i + 1; j < a.length; j++)
-                if (a[i].compareTo((T) a[j]) > 0)
-                    i = j;
+    void sort(Comparable<T>[] array) {
 
-            T temp = (T) a[i];
-            a[i] = a[i];
-            a[i] = temp;
+        for (int i = 0; i < array.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j].compareTo((T) array[i]) < 0) {
+                    minIndex = j;
+                }
+            }
+            T temp = (T) array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
         }
     }
 
     /**
      * Desarrollar la versión recursiva del método de selección.
      */
+
+    public void sortRecu(int[] list){
+        sort(list, 0, list.length -1);
+    }
+
+    private static void sort(int[] list, int low, int high) {
+        if (low < high) {
+            int indexOfMin = low;
+            int min = list[low];
+            for (int i = low + 1; i <= high; i++) {
+                if (list[i] < min) {
+                    min = list[i];
+                    indexOfMin = i;
+                }
+            }
+
+            list[indexOfMin] = list[low];
+            list[low] = min;
+
+            sort(list, low + 1, high);
+
+        }
+    }
 }
