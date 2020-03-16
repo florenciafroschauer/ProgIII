@@ -11,7 +11,7 @@ public class SelectionSort<T extends Comparable> {
      * En cada iteración, el mínimo elemento del array desordenado es movido al array ordenado.
      */
 
-    public void sort(int[] array) {
+    public void selectionSort(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -24,6 +24,24 @@ public class SelectionSort<T extends Comparable> {
             array[minIndex] = array[i];
             array[i] = temp;
         }
+    }
+
+    public int selectionSortCounter(int[] array){
+        int counter = 0;
+
+        for (int i = 0; i < array.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i+1; j < array.length; j++) {
+                counter++;
+                if (array[j] < array[minIndex]){
+                    minIndex = j;
+                }
+            }
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
+        }
+        return counter;
     }
 
     /**
