@@ -5,12 +5,12 @@ import tp1.ejercicio1.SearchAlgorithm;
 public class Tester {
     public static void main(String[] args) {
 
-        SearchAlgorithm searchAlgorithm = new SearchAlgorithm();
+        int[] intArray = {1,3,5};
+        int[] intArray2 = {2,4,6};
 
-        int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] mergeArray = Merge.merge(intArray,intArray2);
 
-        System.out.println(searchAlgorithm.BinarySearch(a, 4));
-        System.out.println(searchAlgorithm.SeqSearch(a, 4));
+        Merge.print(mergeArray);
 
     }
 }

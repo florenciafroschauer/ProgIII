@@ -15,7 +15,7 @@ package tp1.ejercicio3;
 
 public class Merge {
 
-    public int[] merge(int[] a, int[] b) {
+    public static int[] merge(int[] a, int[] b) {
         int[] c = new int[a.length + b.length];
         int indexA = 0;
         int indexB = 0;
@@ -23,7 +23,7 @@ public class Merge {
 
         while(indexA < a.length && indexB < b.length) {
 
-                if (a[indexA] < b[indexA]) {
+                if (a[indexA] < b[indexB]) {
                     c[indexC] = a[indexA];
                     indexA++;
                 } else {
@@ -38,18 +38,18 @@ public class Merge {
                       c[indexC] = a[indexA];
                       indexA++;
                       indexC++;
-                  }
+         }
 
-                  while(indexB < b.length) {
+         while(indexB < b.length) {
                       c[indexC] = b[indexB];
                       indexB++;
                       indexC++;
-                  }
+         }
 
         return c;
     }
 
-    public void print(int[] c) {
+    public static void print(int[] c) {
         for (int value : c) {
             System.out.println(value);
         }
