@@ -11,7 +11,7 @@ public class SelectionSort<T extends Comparable> {
      * En cada iteración, el mínimo elemento del array desordenado es movido al array ordenado.
      */
 
-    public void selectionSort(int[] array) {
+    public void stringSelectionSort(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -48,7 +48,7 @@ public class SelectionSort<T extends Comparable> {
      * Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
-    public void selectionSort(String[] array) {
+    public void stringSelectionSort(String[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -67,7 +67,7 @@ public class SelectionSort<T extends Comparable> {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    public void selectionSort(T[] array) {
+    public void genericSelectionSort(T[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;

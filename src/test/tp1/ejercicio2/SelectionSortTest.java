@@ -11,7 +11,7 @@ public class SelectionSortTest {
 
         int[] a = {5,8,2,4,0,1};
         int[] b = {0,1,2,4,5,8};
-        selectionSort.selectionSort(a);
+        selectionSort.stringSelectionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -21,7 +21,7 @@ public class SelectionSortTest {
 
         String[] a = {"Florencia", "Juan", "Agustin"};
         String[] b = {"Agustin", "Florencia", "Juan"};
-        selectionSort.selectionSort(a);
+        selectionSort.stringSelectionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -31,7 +31,7 @@ public class SelectionSortTest {
 
         String[] a = {"b", "c", "a"};
         String[] b = {"a", "b", "c"};
-        selectionSort.selectionSort(a);
+        selectionSort.stringSelectionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -41,7 +41,7 @@ public class SelectionSortTest {
 
         int[] a = {5,8,2,4,0,1};
         int[] b = {0,1,2,4,5,8};
-        selectionSort.selectionSort(a);
+        selectionSort.stringSelectionSort(a);
         assertArrayEquals(b,a);
 
     }

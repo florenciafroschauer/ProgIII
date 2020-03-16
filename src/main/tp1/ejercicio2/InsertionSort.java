@@ -11,7 +11,7 @@ public class InsertionSort<T extends Comparable> {
      * elemento que es más pequeño que la key.
      */
 
-    public int insertionSort(int[] array) {
+    public int stringInsertionSort(int[] array) {
         int counter = 0;
         for (int j = 1; j < array.length; j++) {
             counter++;
@@ -30,7 +30,7 @@ public class InsertionSort<T extends Comparable> {
      * Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
-    public void insertionSort(String[] array) {
+    public void stringInsertionSort(String[] array) {
         for (int j = 1; j < array.length; j++) {
             String key = array[j];
             int i = j - 1;
@@ -46,7 +46,7 @@ public class InsertionSort<T extends Comparable> {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    public void insertionSortGeneric(T[] array) {
+    public void genericInsertionSort(T[] array) {
         for (int j = 1; j < array.length; j++) {
             T key = array[j];
             int i = j - 1;

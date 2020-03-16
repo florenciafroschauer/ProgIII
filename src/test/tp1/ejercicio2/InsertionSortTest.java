@@ -10,7 +10,7 @@ public class InsertionSortTest {
         InsertionSort insertionSort = new InsertionSort();
         int[] a = {4,7,1,3,2,6,5};
         int[] b = {1,2,3,4,5,6,7};
-        insertionSort.insertionSort(a);
+        insertionSort.stringInsertionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -19,7 +19,7 @@ public class InsertionSortTest {
         InsertionSort insertionSort = new InsertionSort();
         String[] a = {"Florencia", "Juan", "Agustin"};
         String[] b = {"Agustin", "Florencia", "Juan"};
-        insertionSort.insertionSort(a);
+        insertionSort.stringInsertionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -28,7 +28,7 @@ public class InsertionSortTest {
         InsertionSort insertionSort = new InsertionSort();
         String[] a = {"b", "c", "a"};
         String[] b = {"a", "b", "c"};
-        insertionSort.insertionSortGeneric(a);
+        insertionSort.genericInsertionSort(a);
         assertArrayEquals(b,a);
     }
 

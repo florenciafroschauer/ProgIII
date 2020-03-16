@@ -15,10 +15,10 @@ public class Tester {
         System.out.println("Binary search:");
 
         searchAlgorithm.printArray(a);
-        System.out.println(searchAlgorithm.BinarySearch(a, 5));
-        System.out.println(searchAlgorithm.BinarySearch(a, 6));
-        System.out.println(searchAlgorithm.BinarySearch(a, 7));
-        System.out.println(searchAlgorithm.BinarySearch(a, 11));
+        System.out.println(searchAlgorithm.binarySearch(a, 5));
+        System.out.println(searchAlgorithm.binarySearch(a, 6));
+        System.out.println(searchAlgorithm.binarySearch(a, 7));
+        System.out.println(searchAlgorithm.binarySearch(a, 11));
 
         System.out.println(searchAlgorithm.SeqSearch(a, 8));
         System.out.println(searchAlgorithm.SeqSearch(a, 9));
@@ -32,17 +32,17 @@ public class Tester {
 
         System.out.println("Int Sort:");
         int[] intArray = {2, 5, 9, 1, 5};
-        System.out.println("Sorting Time: " + insertionSort.insertionSort(intArray));
+        System.out.println("Sorting Time: " + insertionSort.stringInsertionSort(intArray));
         insertionSort.printIntArray(intArray);
 
         System.out.println("String Sort:");
         String[] stringArray = {"Juan", "Agustin", "Florencia"};
-        insertionSort.insertionSort(stringArray);
+        insertionSort.stringInsertionSort(stringArray);
         insertionSort.printArray(stringArray);
 
         System.out.println("Generic Sort:");
         String[] genericArray = {"a", "d", "b", "g", "c", "e", "f"};
-        insertionSort.insertionSortGeneric(genericArray);
+        insertionSort.genericInsertionSort(genericArray);
         insertionSort.printArray(genericArray);
 
         System.out.println("---------------");
@@ -52,12 +52,12 @@ public class Tester {
 
         System.out.println("Int Sort: ");
         int[]intArray2 = {2, 5, 9, 1, 5};
-        bubbleSort.bubbleSort(intArray2);
+        bubbleSort.stringBubbleSort(intArray2);
         bubbleSort.printIntArray(intArray2);
 
         System.out.println("String Sort: ");
         String[] stringArray2 = {"Juan", "Agustin", "Florencia"};
-        bubbleSort.bubbleSort(stringArray2);
+        bubbleSort.stringBubbleSort(stringArray2);
         bubbleSort.printArray(stringArray2);
 
         System.out.println("Generics Sort: ");
@@ -72,17 +72,17 @@ public class Tester {
 
         System.out.println("Int Sort: ");
         int[]intArray3 = {2, 5, 9, 1, 5};
-        selectionSort.selectionSort(intArray3);
+        selectionSort.stringSelectionSort(intArray3);
         selectionSort.printIntArray(intArray2);
 
         System.out.println("String Sort: ");
         String[] stringArray3 = {"Juan", "Agustin", "Florencia"};
-        selectionSort.selectionSort(stringArray3);
+        selectionSort.stringSelectionSort(stringArray3);
         selectionSort.printArray(stringArray3);
 
         System.out.println("Generics Sort: ");
         String[] genericArray3 = {"a", "d", "b", "g", "c", "e", "f"};
-        selectionSort.selectionSort(genericArray3);
+        selectionSort.genericSelectionSort(genericArray3);
         selectionSort.printArray(genericArray3);
     }
 }

@@ -11,7 +11,7 @@ public class BubbleSort<T extends Comparable> {
      * posición correcta.
      */
 
-    public void bubbleSort(int a[]) {
+    public void stringBubbleSort(int a[]) {
         int n = a.length;
         for (int i = 0; i < n-1; i++) {
             for (int j = 0; j < n - i - 1; j++)
@@ -43,7 +43,7 @@ public class BubbleSort<T extends Comparable> {
      * d) Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
-    public void bubbleSort(String[] a) {
+    public void stringBubbleSort(String[] a) {
         int n = a.length;
         for (int i = 0; i < n-1; i++) {
             for (int j = 0; j < n - i - 1; j++)

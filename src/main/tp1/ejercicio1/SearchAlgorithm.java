@@ -25,7 +25,7 @@ public class SearchAlgorithm {
      * if it can't find it.
      */
 
-    public int BinarySearch(int[] a, int k) {
+    public int binarySearch(int[] a, int k) {
         int min = 0;
         int max = a.length - 1;
         int middle = (min + max) / 2;
