@@ -4,9 +4,11 @@ import org.junit.Test;
 
 public class SearchAlgorithmTest {
 
-    @Test
-    public void given_when_then() {
-        assert false;
-
+    public static void main(String[] args) {
+        SearchAlgorithm searchAlgorithm = new SearchAlgorithm();
+        int key = 3;
+        int[] intArray1 = {1,6,3,9,2};
+        System.out.println("Binary Search: " + searchAlgorithm.BinarySearch(intArray1, key));
+        System.out.println("Sequential Search: " + searchAlgorithm.SeqSearch(intArray1, key));
     }
 }
