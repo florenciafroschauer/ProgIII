@@ -48,7 +48,7 @@ public class SelectionSort<T extends Comparable> {
      * Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
-    public void sort(String[] array) {
+    public void selectionSort(String[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -67,16 +67,16 @@ public class SelectionSort<T extends Comparable> {
      * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
-    public void sort(T[] array) {
+    public void selectionSort(T[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < array.length; j++) {
-                if (array[j].compareTo((T) array[i]) < 0) {
+                if (array[j].compareTo(array[i]) < 0) {
                     minIndex = j;
                 }
             }
-            T temp = (T) array[minIndex];
+            T temp = array[minIndex];
             array[minIndex] = array[i];
             array[i] = temp;
         }

@@ -77,12 +77,12 @@ public class Tester {
 
         System.out.println("String Sort: ");
         String[] stringArray3 = {"Juan", "Agustin", "Florencia"};
-        selectionSort.sort(stringArray3);
+        selectionSort.selectionSort(stringArray3);
         selectionSort.printArray(stringArray3);
 
         System.out.println("Generics Sort: ");
         String[] genericArray3 = {"a", "d", "b", "g", "c", "e", "f"};
-        selectionSort.sort(genericArray3);
+        selectionSort.selectionSort(genericArray3);
         selectionSort.printArray(genericArray3);
     }
 }
