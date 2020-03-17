@@ -11,7 +11,7 @@ public class SelectionSort<T extends Comparable> {
      * En cada iteración, el mínimo elemento del array desordenado es movido al array ordenado.
      */
 
-    public void stringSelectionSort(int[] array) {
+    public void selectionSort(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
@@ -25,6 +25,11 @@ public class SelectionSort<T extends Comparable> {
             array[i] = temp;
         }
     }
+    /**
+     * c)  Generar en forma random un arreglo de números enteros
+     * para distintos valores de N (siendo N el tamaño del arreglo)
+     * y comparar los tiempos para distintos valores de N.
+     */
 
     public int selectionSortCounter(int[] array){
         int counter = 0;
@@ -45,7 +50,7 @@ public class SelectionSort<T extends Comparable> {
     }
 
     /**
-     * Modificar los algoritmos anteriores para que ordenen cadenas.
+     * d) Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
     public void stringSelectionSort(String[] array) {
@@ -64,7 +69,7 @@ public class SelectionSort<T extends Comparable> {
     }
 
     /**
-     * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
+     * e) Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
     public void genericSelectionSort(T[] array) {
@@ -83,10 +88,10 @@ public class SelectionSort<T extends Comparable> {
     }
 
     /**
-     * Desarrollar la versión recursiva del método de selección.
+     * g) Desarrollar la versión recursiva del método de selección.
      */
 
-    public void sortRecu(int[] list){
+    public void recursiveSelectionSort(int[] list){
         sort(list, 0, list.length -1);
     }
 

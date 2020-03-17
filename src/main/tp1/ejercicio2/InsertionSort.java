@@ -11,7 +11,25 @@ public class InsertionSort<T extends Comparable> {
      * elemento que es más pequeño que la key.
      */
 
-    public int stringInsertionSort(int[] array) {
+
+    public void insertionSort(int[] array) {
+        for (int j = 1; j < array.length; j++) {
+            int key = array[j];
+            int i = j - 1;
+            while ((i > -1) && (array[i] > key)) {
+                array[i + 1] = array[i];
+                i--;
+            }
+            array[i + 1] = key;
+        }
+    }
+
+    /**
+     * c)  Generar en forma random un arreglo de números enteros
+     * para distintos valores de N (siendo N el tamaño del arreglo)
+     * y comparar los tiempos para distintos valores de N.
+     */
+    public int insertionSortCounter(int[] array) {
         int counter = 0;
         for (int j = 1; j < array.length; j++) {
             counter++;
@@ -27,7 +45,7 @@ public class InsertionSort<T extends Comparable> {
     }
 
     /**
-     * Modificar los algoritmos anteriores para que ordenen cadenas.
+     * d) Modificar los algoritmos anteriores para que ordenen cadenas.
      */
 
     public void stringInsertionSort(String[] array) {
@@ -43,7 +61,7 @@ public class InsertionSort<T extends Comparable> {
     }
 
     /**
-     * Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
+     * e) Modificar los algoritmos de manera que ordenen cualquier tipo de dato.
      */
 
     public void genericInsertionSort(T[] array) {

@@ -9,7 +9,7 @@ public class BubbleSort<T extends Comparable> {
      * elementos menores han “ascendido” una posición. El proceso se continúa repitiendo
      * nuevamente desde la posición inicial del arreglo hasta que cada elemento “caiga” a su
      * posición correcta.
-     */
+            */
 
     public void stringBubbleSort(int a[]) {
         int n = a.length;
