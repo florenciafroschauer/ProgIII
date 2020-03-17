@@ -3,7 +3,7 @@ package tp1.ejercicio2;
 public class InsertionSort<T extends Comparable> {
 
     /**
-     * El índice i indica la posición del elemento actual en el array a ordenar. Comienza
+     * a) El índice i indica la posición del elemento actual en el array a ordenar. Comienza
      * desde el segundo elemento. El elemento en el índice i se llama key. Una vez que tiene
      * la key, la segunda parte del algoritmo trata de encontrar su índice correcto. Si la
      * key es menor que el valor del elemento en el índice j, entonces la key se mueve una
@@ -29,6 +29,7 @@ public class InsertionSort<T extends Comparable> {
      * para distintos valores de N (siendo N el tamaño del arreglo)
      * y comparar los tiempos para distintos valores de N.
      */
+
     public int insertionSortCounter(int[] array) {
         int counter = 0;
         for (int j = 1; j < array.length; j++) {

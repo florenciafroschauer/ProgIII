@@ -11,7 +11,7 @@ public class BubbleSort<T extends Comparable> {
      * posición correcta.
             */
 
-    public void stringBubbleSort(int a[]) {
+    public void bubbleSort(int a[]) {
         int n = a.length;
         for (int i = 0; i < n-1; i++) {
             for (int j = 0; j < n - i - 1; j++)
@@ -23,6 +23,11 @@ public class BubbleSort<T extends Comparable> {
                 }
         }
     }
+
+    /**
+     *c) Generar en forma random un arreglo de números enteros para distintos valores de N (siendo
+     * N el tamaño del arreglo) y comparar los tiempos para distintos valores de N.
+     */
 
     public int bubbleSortCounter(int[] a) {
         int counter = 0;

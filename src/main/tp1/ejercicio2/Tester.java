@@ -20,6 +20,8 @@ public class Tester {
         System.out.println(searchAlgorithm.binarySearch(a, 7));
         System.out.println(searchAlgorithm.binarySearch(a, 11));
 
+        System.out.println("Sequential search:");
+
         System.out.println(searchAlgorithm.SeqSearch(a, 8));
         System.out.println(searchAlgorithm.SeqSearch(a, 9));
         System.out.println(searchAlgorithm.SeqSearch(a, 10));
@@ -32,7 +34,7 @@ public class Tester {
 
         System.out.println("Int Sort:");
         int[] intArray = {2, 5, 9, 1, 5};
-        System.out.println("Sorting Time: " + insertionSort.stringInsertionSort(intArray));
+        insertionSort.insertionSort(intArray);
         insertionSort.printIntArray(intArray);
 
         System.out.println("String Sort:");
@@ -45,6 +47,8 @@ public class Tester {
         insertionSort.genericInsertionSort(genericArray);
         insertionSort.printArray(genericArray);
 
+        System.out.println("Sorting Time: " + insertionSort.insertionSortCounter(intArray));
+
         System.out.println("---------------");
 
         System.out.println("BubbleSort:");
@@ -52,7 +56,7 @@ public class Tester {
 
         System.out.println("Int Sort: ");
         int[]intArray2 = {2, 5, 9, 1, 5};
-        bubbleSort.stringBubbleSort(intArray2);
+        bubbleSort.bubbleSort(intArray2);
         bubbleSort.printIntArray(intArray2);
 
         System.out.println("String Sort: ");
@@ -65,14 +69,16 @@ public class Tester {
         bubbleSort.genericBubbleSort(genericArray2);
         bubbleSort.printArray(genericArray2);
 
+        System.out.println("Sorting Time: " + bubbleSort.bubbleSortCounter(intArray));
+
         System.out.println("---------------");
 
         System.out.println("Selection Sort: ");
         SelectionSort selectionSort = new SelectionSort();
 
         System.out.println("Int Sort: ");
-        int[]intArray3 = {2, 5, 9, 1, 5};
-        selectionSort.stringSelectionSort(intArray3);
+        int[] intArray3 = {2, 5, 9, 1, 5};
+        selectionSort.selectionSort(intArray3);
         selectionSort.printIntArray(intArray2);
 
         System.out.println("String Sort: ");
@@ -84,5 +90,7 @@ public class Tester {
         String[] genericArray3 = {"a", "d", "b", "g", "c", "e", "f"};
         selectionSort.genericSelectionSort(genericArray3);
         selectionSort.printArray(genericArray3);
+
+        System.out.println("Sorting Time: " + selectionSort.selectionSortCounter(intArray));
     }
 }

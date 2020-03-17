@@ -3,7 +3,7 @@ package tp1.ejercicio2;
 public class SelectionSort<T extends Comparable> {
 
     /**
-     * El algoritmo de selección ordena un array encontrando reiteradamente el mínimo
+     * a) El algoritmo de selección ordena un array encontrando reiteradamente el mínimo
      * elemento (considerando un orden ascendente) y poniéndolo al comienzo. El algoritmo
      * mantiene dos subarrays en un determinado array:
      * - El subarray ordenado

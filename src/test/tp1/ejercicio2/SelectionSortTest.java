@@ -11,7 +11,7 @@ public class SelectionSortTest {
 
         int[] a = {5,8,2,4,0,1};
         int[] b = {0,1,2,4,5,8};
-        selectionSort.stringSelectionSort(a);
+        selectionSort.selectionSort(a);
         assertArrayEquals(b,a);
     }
 
@@ -31,19 +31,17 @@ public class SelectionSortTest {
 
         String[] a = {"b", "c", "a"};
         String[] b = {"a", "b", "c"};
-        selectionSort.stringSelectionSort(a);
+        selectionSort.genericSelectionSort(a);
         assertArrayEquals(b,a);
     }
 
     @Test
-    public void sortRecu() {
+    public void recursiveSelectionSortTest() {
         SelectionSort selectionSort = new SelectionSort();
 
         int[] a = {5,8,2,4,0,1};
         int[] b = {0,1,2,4,5,8};
-        selectionSort.stringSelectionSort(a);
+        selectionSort.recursiveSelectionSort(a);
         assertArrayEquals(b,a);
-
     }
-
 }
