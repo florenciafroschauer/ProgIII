@@ -56,7 +56,7 @@ public class SudokuSolver {
                     // missing values in Sudoku
                     isEmpty = false;
                     break;
-                }
+            }
             }
             if (!isEmpty) {
                 break;
