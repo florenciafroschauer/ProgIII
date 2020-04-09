@@ -1,99 +1,109 @@
 package tp3;
 
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
+
 public class SudokuSolver {
 
-    public static boolean isSafe(int[][] board, int row, int col, int num) {
-        // row has the unique (row-clash)
-        for (int d = 0; d < board.length; d++) {
-            // if the number we are trying to
-            // place is already present in
-            // that row, return false;
-            if (board[row][d] == num) {
-                return false;
-            }
-        }
-
-        // column has the unique numbers (column-clash)
-        for (int r = 0; r < board.length; r++) {
-            // if the number we are trying to
-            // place is already present in
-            // that column, return false;
-
-            if (board[r][col] == num) {
-                return false;
-            }
-        }
-
-        // corresponding square has
-        // unique number (box-clash)
-        int sqrt = (int) Math.sqrt(board.length);
-        int boxRowStart = row - row % sqrt;
-        int boxColStart = col - col % sqrt;
-
-        for (int r = boxRowStart; r < boxRowStart + sqrt; r++) {
-            for (int d = boxColStart; d < boxColStart + sqrt; d++) {
-                if (board[r][d] == num) {
-                    return false;
-                }
-            }
-        }
-
-        // if there is no clash, it's safe
-        return true;
-    }
-
-    public static boolean solveSudoku(int[][] board, int n) {
+    public boolean solveSudoku(int[][] grid) {
         int row = -1;
-        int col = -1;
+        int column = -1;
         boolean isEmpty = true;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (board[i][j] == 0) {
-                    row = i;
-                    col = j;
 
-                    // we still have some remaining
-                    // missing values in Sudoku
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j] == 0) {
+                    row = i;
+                    column = j;
                     isEmpty = false;
                     break;
+                }
             }
-            }
+
             if (!isEmpty) {
                 break;
             }
         }
 
-        // no empty space left
         if (isEmpty) {
             return true;
         }
 
-        // else for each-row backtrack
-        for (int num = 1; num <= n; num++) {
-            if (isSafe(board, row, col, num)) {
-                board[row][col] = num;
-                if (solveSudoku(board, n)) {
-                    // print(board, n);
+        for (int i = 1; i <= grid.length; i++) {
+            if (checkNumber(grid, row, column, i)) {
+                grid[row][column] = i;
+                if (solveSudoku(grid)) {
                     return true;
                 }
                 else {
-                    board[row][col] = 0; // replace it
+                    grid[row][column] = 0;
                 }
             }
         }
         return false;
     }
 
-    public static void print(int[][] board, int N) {
-        // we got the answer, just print it
-        for (int r = 0; r < N; r++) {
-            for (int d = 0; d < N; d++) {
-                System.out.print(board[r][d]);
+    /**
+     * Check if the number can be a possible solution.
+     */
+
+    public boolean checkNumber(int[][] grid, int row, int column, int number) {
+        return uniqueNumberInColumn(grid, column, number) && uniqueNumberInRow(grid, row, number) &&
+                uniqueNumberInGrid(grid, row, column, number);
+    }
+
+    /**
+     *  Returns false if the number is already in the column, and true if it isn't.
+     */
+
+    private boolean uniqueNumberInColumn(int[][] grid, int column, int number) {
+        for (int i = 0; i < grid.length; i++) {
+            if (grid[i][column] == number) {
+                return false;
+            }
+        } return true;
+    }
+
+    /**
+     *  Returns false if the number is already in the row, and true if it isn't.
+     */
+
+    private boolean uniqueNumberInRow(int[][] grid, int row, int number) {
+        for (int i = 0; i < grid.length; i++) {
+            if (grid[row][i] == number) {
+                return false;
+            }
+        } return true;
+    }
+
+    /**
+     *  Returns false if the number is already in the 3x3 grid, and true if it isn't.
+     */
+
+    private boolean uniqueNumberInGrid(int[][] grid, int row, int column, int number) {
+        int gridRow = row - row % 3;
+        int gridColumn = column - column % 3;
+
+        for (int i = gridRow; i < gridRow + 3; i++) {
+            for (int j = gridColumn; j < gridColumn + 3; j++) {
+                if (grid[i][j] == number) {
+                    return false;
+                }
+            }
+
+        } return true;
+    }
+
+    public void print(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int d = 0; d < grid.length; d++) {
+                System.out.print(grid[i][d]);
                 System.out.print(" ");
             }
             System.out.print("\n");
 
-            if ((r + 1) % (int) Math.sqrt(N) == 0) {
+            if ((i + 1) % (int) Math.sqrt(grid.length) == 0) {
                 System.out.print("");
             }
         }
