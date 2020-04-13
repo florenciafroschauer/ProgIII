@@ -12,11 +12,11 @@ public class Coordinate {
         this.y = y;
     }
 
-    public int getRow() {
+    public int getX() {
         return x;
     }
 
-    public int getColumn() {
+    public int getY() {
         return y;
     }
 }
