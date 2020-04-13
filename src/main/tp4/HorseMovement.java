@@ -21,7 +21,7 @@ public class HorseMovement {
             pointer--;
         }
         
-        if (pointer < 3){
+        if (pointer < 3){ //solucionar que siempre imprima el mismo recorrido
             for (int i = pointer; i < 4; i++) {
                 possibleMovement(currentPosition.get(pointer).peek());
             }
