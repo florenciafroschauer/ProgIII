@@ -2,6 +2,10 @@ package tp4;
 
 import java.util.Scanner;
 
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
+
 public class HorseMovementTester {
     public static void main(String[] args) {
 
@@ -9,15 +13,13 @@ public class HorseMovementTester {
         Scanner scanner = new Scanner(System.in);
 
         testHorseMovement.next();
-        System.out.println("\n\n1) Next \n2) Exit");
+        System.out.println("\n\n1) Next path \n2) Exit");
         int value = scanner.nextInt();
 
-        while(value != 2){
+        while(value != 2) {
             testHorseMovement.next();
-            System.out.println("\n\n1) Next \n2) Exit");
+            System.out.println("\n\n1) Next path \n2) Exit");
             value = scanner.nextInt();
         }
-
-
     }
 }

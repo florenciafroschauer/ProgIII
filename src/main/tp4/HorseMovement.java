@@ -1,15 +1,18 @@
 package tp4;
 
 import exercise.DynamicStack;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
 
 public class HorseMovement {
     private List<DynamicStack<Coordinate>> currentPosition;
     private int pointer;
 
-    public HorseMovement () {
+    public HorseMovement() {
         currentPosition = new ArrayList<>();
         DynamicStack<Coordinate> tempStack = new DynamicStack<>();
         tempStack.push(new Coordinate(1,1));
@@ -18,12 +21,11 @@ public class HorseMovement {
     }
 
     public void next() {
-        while (currentPosition.get(pointer).isEmpty()){
+        while (currentPosition.get(pointer).isEmpty()) {
             currentPosition.remove(pointer);
             pointer--;
-            if (pointer == -1){
-                System.exit(0);
-            }
+
+            if (pointer == -1) System.exit(0);
             currentPosition.get(pointer).pop();
         }
         
@@ -40,16 +42,16 @@ public class HorseMovement {
     private void possibleMovement(Coordinate coordinate) {
         DynamicStack<Coordinate> dynamicStack = new DynamicStack<>();
 
-        int X[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
-        int Y[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
+        int[] xMovement = { 2, 1, -1, -2, -2, -1, 1, 2 };
+        int[] yMovement = { 1, 2, 2, 1, -1, -2, -2, -1 };
 
         for (int i = 0; i < 8; i++) {
 
-            int x = coordinate.getX() + X[i];
-            int y = coordinate.getY() + Y[i];
-            Coordinate coordinate1 = new Coordinate(x,y);
+            int x = coordinate.getX() + xMovement[i];
+            int y = coordinate.getY() + yMovement[i];
+            Coordinate coordinate1 = new Coordinate(x, y);
 
-            if (isValid(coordinate1)){
+            if (isValid(coordinate1)) {
                 dynamicStack.push(coordinate1);
             }
         }
@@ -58,27 +60,27 @@ public class HorseMovement {
         pointer++;
     }
 
-    private boolean isValid(Coordinate coordinate){
+    private boolean isValid(Coordinate coordinate) {
         for (int i = 0; i < pointer; i++) {
-            if (currentPosition.get(i).peek().equals(coordinate)){
+            if (currentPosition.get(i).peek().equals(coordinate)) {
                 return false;
             }
         }
-        return coordinate.getX() < 9 && coordinate.getX() > 0 && coordinate.getY() < 9
-                && coordinate.getY() > 0;
+
+        return coordinate.getX() < 9 && coordinate.getX() > 0 &&
+                coordinate.getY() < 9 && coordinate.getY() > 0;
     }
 
-    private void printPath(){
+    private void printPath() {
         for (int i = 0; i < pointer; i++) {
             printCoordinate(currentPosition.get(i).peek());
         }
 
         printCoordinate(currentPosition.get(pointer).peek());
-
     }
 
     private void printCoordinate(Coordinate coordinate) {
-        switch(coordinate.getX()){
+        switch (coordinate.getX()) {
             case 1:
                 System.out.print("A" + coordinate.getY()+ " ");
             break;
@@ -110,8 +112,6 @@ public class HorseMovement {
             case 8:
                 System.out.print("H" + coordinate.getY()+ " ");
             break;
-
         }
     }
-
 }
