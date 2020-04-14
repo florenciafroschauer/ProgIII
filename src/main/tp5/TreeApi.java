@@ -1,5 +1,4 @@
-package exercise.tree;
+package tp5;
 
 public class TreeApi {
-
 }
