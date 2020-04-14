@@ -12,6 +12,11 @@ public class Coordinate {
         this.y = y;
     }
 
+    public boolean equals(Coordinate coordinate){
+        return y == coordinate.getY() &&
+                x == coordinate.getX();
+    }
+
     public int getX() {
         return x;
     }

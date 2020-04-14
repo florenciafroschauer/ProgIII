@@ -2,6 +2,7 @@ package tp4;
 
 import exercise.DynamicStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HorseMovement {
@@ -9,6 +10,7 @@ public class HorseMovement {
     private int pointer;
 
     public HorseMovement () {
+        currentPosition = new ArrayList<>();
         DynamicStack<Coordinate> tempStack = new DynamicStack<>();
         tempStack.push(new Coordinate(1,1));
         currentPosition.add(tempStack);
@@ -16,22 +18,23 @@ public class HorseMovement {
     }
 
     public void next() {
-        if (currentPosition.get(pointer).isEmpty()){
+        while (currentPosition.get(pointer).isEmpty()){
             currentPosition.remove(pointer);
             pointer--;
+            if (pointer == -1){
+                System.exit(0);
+            }
+            currentPosition.get(pointer).pop();
         }
         
-        if (pointer < 3){ //solucionar que siempre imprima el mismo recorrido
-            for (int i = pointer; i < 4; i++) {
+        if (pointer < 3) {
+            for (int i = pointer; i < 3; i++) {
                 possibleMovement(currentPosition.get(pointer).peek());
             }
         }
 
         printPath();
         currentPosition.get(pointer).pop();
-
-
-
     }
 
     private void possibleMovement(Coordinate coordinate) {
@@ -56,6 +59,11 @@ public class HorseMovement {
     }
 
     private boolean isValid(Coordinate coordinate){
+        for (int i = 0; i < pointer; i++) {
+            if (currentPosition.get(i).peek().equals(coordinate)){
+                return false;
+            }
+        }
         return coordinate.getX() < 9 && coordinate.getX() > 0 && coordinate.getY() < 9
                 && coordinate.getY() > 0;
     }
@@ -72,35 +80,35 @@ public class HorseMovement {
     private void printCoordinate(Coordinate coordinate) {
         switch(coordinate.getX()){
             case 1:
-                System.out.println("A" + coordinate.getY());
+                System.out.print("A" + coordinate.getY()+ " ");
             break;
 
             case 2:
-                System.out.println("B" + coordinate.getY());
+                System.out.print("B" + coordinate.getY() + " ");
             break;
 
             case 3:
-                System.out.println("C" + coordinate.getY());
+                System.out.print("C" + coordinate.getY() + " ");
             break;
 
             case 4:
-                System.out.println("D" + coordinate.getY());
+                System.out.print("D" + coordinate.getY()+ " ");
             break;
 
             case 5:
-                System.out.println("E" + coordinate.getY());
+                System.out.print("E" + coordinate.getY()+ " ");
             break;
 
             case 6:
-                System.out.println("F" + coordinate.getY());
+                System.out.print("F" + coordinate.getY()+ " ");
             break;
 
             case 7:
-                System.out.println("G" + coordinate.getY());
+                System.out.print("G" + coordinate.getY()+ " ");
             break;
 
             case 8:
-                System.out.println("H" + coordinate.getY());
+                System.out.print("H" + coordinate.getY()+ " ");
             break;
 
         }
