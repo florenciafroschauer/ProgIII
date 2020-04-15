@@ -23,17 +23,18 @@ public class HorseMovement {
     /**
      *  Prints the possible path from horse´s current position.
      */
+
     public void next(int index) {
         while (currentPosition.get(pointer).isEmpty()) {
             currentPosition.remove(pointer);
             pointer--;
 
-            if (pointer == -1) System.exit(0);
+            if (pointer == - 1) System.exit(0);
             currentPosition.get(pointer).pop();
         }
-        
-        if (pointer < index-1) {
-            for (int i = pointer; i < index-1; i++) {
+
+        if (pointer < index - 1) {
+            for (int i = pointer; i < index - 1; i++) {
                 possibleMovement(currentPosition.get(pointer).peek());
             }
         }
@@ -45,6 +46,7 @@ public class HorseMovement {
     /**
      *  Creates a stack with the horse´s possible movements.
      */
+
     private void possibleMovement(Coordinate coordinate) {
         DynamicStack<Coordinate> dynamicStack = new DynamicStack<>();
 
@@ -69,6 +71,7 @@ public class HorseMovement {
     /**
      *  Checks if a movements is valid.
      */
+
     private boolean isValid(Coordinate coordinate) {
         for (int i = 0; i < pointer; i++) {
             if (currentPosition.get(i).peek().equals(coordinate)) {
@@ -83,6 +86,7 @@ public class HorseMovement {
     /**
      *  Defines how a path is printed.
      */
+
     private void printPath() {
         for (int i = 0; i < pointer; i++) {
             printCoordinate(currentPosition.get(i).peek());
@@ -94,6 +98,7 @@ public class HorseMovement {
     /**
      *  Defines how a coordinate is printed.
      */
+
     private void printCoordinate(Coordinate coordinate) {
         switch (coordinate.getX()) {
             case 1:
