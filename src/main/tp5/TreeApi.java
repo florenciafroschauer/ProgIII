@@ -194,11 +194,11 @@ public class TreeApi<T> {
     }
 
 
-    public void inOrden(BinaryTree<T> tree) {
+    public void inorden(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
-            inOrden(tree.getLeft());
+            inorden(tree.getLeft());
             System.out.println(tree.getRoot());
-            inOrden(tree.getRight());
+            inorden(tree.getRight());
         }
     }
 
@@ -218,28 +218,28 @@ public class TreeApi<T> {
         }
     }
 
-    public void printPostorder(BinaryTree<T> tree){
+    public void postorder(BinaryTree<T> tree){
         if (tree.isEmpty())
             return;
 
-        printPostorder(tree.getLeft());
+        postorder(tree.getLeft());
 
         // then recur on right subtree
-        printPostorder(tree.getRight());
+        postorder(tree.getRight());
 
         System.out.print(tree.getRoot() + " ");
     }
 
 
-    public void printPreorder(BinaryTree<T> tree) {
+    public void preorder(BinaryTree<T> tree) {
         if (tree.isEmpty())
             return;
 
         System.out.print(tree.getRoot() + " ");
 
-        printPreorder(tree.getLeft());
+        preorder(tree.getLeft());
 
-        printPreorder(tree.getRight());
+        preorder(tree.getRight());
     }
 
     private int size(BinaryTree<T> a) {
