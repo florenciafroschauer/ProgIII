@@ -2,6 +2,8 @@ package tp5;
 
 import exercise.DynamicList;
 
+import java.util.ArrayList;
+
 public class TreeApi<T> {
 
     /**
@@ -60,15 +62,15 @@ public class TreeApi<T> {
      */
     public int elementSum(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
-            return (int) tree.getRoot() + elementSum(tree.getLeft()) + elementSum(tree.getRight());
+            return (Integer) tree.getRoot() + elementSum(tree.getLeft()) + elementSum(tree.getRight());
         }
         return 0;
     }
 
     public int threeDividersElementSum(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
-            if ((int) tree.getRoot() % 3 == 0) {
-                return (int) tree.getRoot() + threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
+            if ((Integer) tree.getRoot() % 3 == 0) {
+                return (Integer) tree.getRoot() + threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
             } else return threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
 
         }
@@ -82,8 +84,7 @@ public class TreeApi<T> {
         if (tree1.isEmpty() && tree2.isEmpty()) {
             return true;
         } else if (tree1.getRoot().equals(tree2.getRoot())) {
-            return areEquals(tree1.getRight(), tree2.getRight())
-                    && areEquals(tree1.getLeft(), tree2.getLeft());
+            return areEquals(tree1.getRight(), tree2.getRight()) && areEquals(tree1.getLeft(), tree2.getLeft());
         }
         return false;
     }
@@ -112,11 +113,15 @@ public class TreeApi<T> {
      * Indica si un árbol binario es completo
      */
     public boolean isComplete(BinaryTree<T> tree) {
-        if (tree.isEmpty()) {
+        if(tree.isEmpty()){
             return false;
         }
-        if (!tree.isEmpty())
+        else if((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())) {
             return true;
+        }
+        else if((tree.getLeft().isEmpty()) || (tree.getRight().isEmpty())) {
+            return false;
+        }
         return isComplete(tree.getLeft()) && isComplete(tree.getRight());
     }
 
@@ -124,12 +129,12 @@ public class TreeApi<T> {
      * Informa si un árbol binario está lleno
      */
     public boolean isFull(BinaryTree<T> tree) {
-        if (tree != null) {
+        if (!tree.isEmpty()) {
             if (tree.getRight().isEmpty() && tree.getLeft().isEmpty()) {
                 return true;
             }
             if (!(tree.getRight().isEmpty() && tree.getLeft().isEmpty())) {
-                return isFull(tree.getLeft()) && isFull(tree.getLeft());
+                return isFull(tree.getLeft()) && isFull(tree.getRight());
             }
         }
         return false;
@@ -139,11 +144,11 @@ public class TreeApi<T> {
      * Un árbol de valores enteros es estable si es
      * vacío, consta de un único elemento o para todo elemento de la estructura su padre es mayor.
      */
-    public boolean estable(BinaryTree<T> tree) {
+    public boolean isStable(BinaryTree<T> tree) {
         if (tree.isEmpty()) {
             return true;
-        } else if ((int) tree.getRoot() > (int) tree.getLeft().getRoot() && (int) tree.getRoot() > (int) tree.getRight().getRoot()) {
-            return estable(tree.getLeft()) && estable(tree.getRight());
+        } else if ((Integer) tree.getRoot() > (Integer) tree.getLeft().getRoot() && (Integer) tree.getRoot() > (Integer) tree.getRight().getRoot()) {
+            return isStable(tree.getLeft()) && isStable(tree.getRight());
         }
         return false;
     }
@@ -170,6 +175,24 @@ public class TreeApi<T> {
             showBorder(tree.getRight());
         }
     }
+
+    public ArrayList<T> frontierList(BinaryTree<T> tree) {
+        ArrayList<T> frontier = new ArrayList<>();
+        if (tree.isEmpty()) {
+            return frontier;
+        }
+        if ((!tree.getLeft().isEmpty() || (!tree.getRight().isEmpty()))) {
+            ArrayList<T> frontier1 = new ArrayList<>();
+            frontier1.addAll(frontierList(tree.getRight()));
+            frontier1.addAll(frontierList(tree.getLeft()));
+            return frontier1;
+        }
+        if((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())){
+             frontier.add(tree.getRoot());
+        }
+        return frontier;
+    }
+
 
     public void inOrden(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {

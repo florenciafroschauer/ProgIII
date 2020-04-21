@@ -1,6 +1,9 @@
 package tp5;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 class TreeApiTest {
@@ -40,6 +43,23 @@ class TreeApiTest {
     BinaryTree<Integer> treeRight7 = new BinaryTree<>();
     BinaryTree<Integer> treeLeft7 = new BinaryTree<>(11);
     BinaryTree<Integer> tree7 = new BinaryTree<> (1, treeLeft7, treeRight7);
+
+    BinaryTree<Integer> tree8LeftLeft = new BinaryTree<>(50);
+    BinaryTree<Integer> tree8LeftRight = new BinaryTree<>(80);
+    BinaryTree<Integer> tree8Right = new BinaryTree<>(95);
+    BinaryTree<Integer> tree8Left = new BinaryTree<>(90, tree8LeftLeft, tree8LeftRight);
+    BinaryTree<Integer> tree8 = new BinaryTree<> (100, tree8Left, tree8Right);
+
+    BinaryTree<Integer> tree9Left = new BinaryTree<>(11, treeLeftLeft, treeLeftRight);
+
+    //BinaryTree<Integer> treeLeftLeft = new BinaryTree<>(25);
+    //BinaryTree<Integer> treeLeftRight = new BinaryTree<>(11);
+    //BinaryTree<Integer> treeRightRight= new BinaryTree<>(25);
+    //BinaryTree<Integer> treeRight = new BinaryTree<>(15,new BinaryTree<>(),treeRightRight);
+    //BinaryTree<Integer> treeLeft = new BinaryTree<>(11, treeLeftLeft, treeLeftRight);
+    //BinaryTree<Integer> tree = new BinaryTree<> (1, treeLeft, treeRight);
+
+
 
 
     @Test
@@ -99,6 +119,7 @@ class TreeApiTest {
     @Test
     void isComplete() {
         assertEquals(true, treeApi.isComplete(tree6));
+        assertEquals(false, treeApi.isComplete(tree));
     }
 
     @Test
@@ -108,14 +129,21 @@ class TreeApiTest {
     }
 
     @Test
-    void estable() {
+    void isStable() {
+        assertEquals(true, treeApi.isStable(tree8));
     }
 
     @Test
     void itsInside() {
+        assertEquals(true, treeApi.itsInside(tree, tree9Left));
     }
 
     @Test
-    void showBorder() {
+    void frontierList() {
+        ArrayList<Integer> array = new ArrayList<>();
+        array.add(15);
+        array.add(11);
+        array.add(25);
+        assertEquals(array, treeApi.frontierList(tree));
     }
 }
