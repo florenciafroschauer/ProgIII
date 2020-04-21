@@ -68,8 +68,8 @@ public class TreeApi<T> {
     public int threeDividersElementSum(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
             if ((int) tree.getRoot() % 3 == 0) {
-                return (int) tree.getRoot() + elementSum(tree.getLeft()) + elementSum(tree.getRight());
-            } else return elementSum(tree.getLeft()) + elementSum(tree.getRight());
+                return (int) tree.getRoot() + threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
+            } else return threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
 
         }
         return 0;
@@ -91,11 +91,11 @@ public class TreeApi<T> {
     /**
      * Informa si los árboles binarios a1 y a2 son isomorfos
      */
-    public boolean areIsomorph(BinaryTree<T> tree1, BinaryTree<T> tree2) {
+    public boolean areIsomorphic(BinaryTree<T> tree1, BinaryTree<T> tree2) {
         if (tree1.isEmpty() && tree2.isEmpty()) {
             return true;
         } else {
-            return areIsomorph(tree1.getRight(), tree2.getRight()) && areEquals(tree1.getLeft(), tree2.getLeft());
+            return areIsomorphic(tree1.getRight(), tree2.getRight()) && areIsomorphic(tree1.getLeft(), tree2.getLeft());
         }
     }
 
