@@ -1,6 +1,7 @@
 package tp5;
 
 import exercise.DynamicList;
+import exercise.DynamicQueue;
 
 import java.util.ArrayList;
 
@@ -145,12 +146,16 @@ public class TreeApi<T> {
      * vacío, consta de un único elemento o para todo elemento de la estructura su padre es mayor.
      */
     public boolean isStable(BinaryTree<T> tree) {
-        if (tree.isEmpty()) {
+        if(tree.isEmpty() || tree.getLeft().isEmpty() && tree.getRight().isEmpty()){
             return true;
-        } else if ((Integer) tree.getRoot() > (Integer) tree.getLeft().getRoot() && (Integer) tree.getRoot() > (Integer) tree.getRight().getRoot()) {
-            return isStable(tree.getLeft()) && isStable(tree.getRight());
         }
-        return false;
+        if((Integer)tree.getRoot() < (Integer)tree.getRight().getRoot() || (Integer)tree.getRoot() < (Integer)tree.getLeft().getRoot()){
+            return false;
+        }
+        isStable(tree.getRight());
+        isStable(tree.getLeft());
+
+        return true;
     }
 
     /**
@@ -197,24 +202,24 @@ public class TreeApi<T> {
     public void inorden(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
             inorden(tree.getLeft());
-            System.out.println(tree.getRoot());
+            System.out.print(tree.getRoot()+ " ");
             inorden(tree.getRight());
         }
     }
 
 
-    public void byLevel(BinaryTree<T> tree) {
-        DynamicList list = new DynamicList();
-        list.insertNext(tree);
-        while (!list.isEmpty()) {
-            System.out.println(list.getActual());
-            if (!tree.getLeft().isEmpty()) {
-                list.insertNext(tree.getLeft());
+    public void byLevels (BinaryTree a){
+        DynamicQueue<BinaryTree> q = new DynamicQueue();
+        q.enqueue(a);
+        while (!q.isEmpty()){
+            a = q.dequeue();
+            System.out.print(a.getRoot() + " ");
+            if(!a.getLeft().isEmpty()){
+                q.enqueue(a.getLeft());
             }
-            if (!tree.getRight().isEmpty()) {
-                list.insertNext(tree.getRight());
+            if(!a.getRight().isEmpty()){
+                q.enqueue(a.getRight());
             }
-            list.remove();
         }
     }
 
@@ -242,7 +247,7 @@ public class TreeApi<T> {
         preorder(tree.getRight());
     }
 
-    private int size(BinaryTree<T> a) {
+    public int size(BinaryTree<T> a) {
         if (a.isEmpty()) return 0;
         else return 1 + size(a.getLeft()) + size(a.getRight());
     }

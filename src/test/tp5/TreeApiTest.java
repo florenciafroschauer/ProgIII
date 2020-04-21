@@ -1,10 +1,16 @@
 package tp5;
 
 import org.junit.Test;
-import java.util.ArrayList;
-import static org.junit.Assert.*;
 
-class TreeApiTest {
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * @author Agustin Augurusa
+ */
+public class TreeApiTest {
 
     TreeApi<Integer> treeApi = new TreeApi();
 
@@ -61,83 +67,82 @@ class TreeApiTest {
 
 
     @Test
-    void weight() {
+    public void weight() {
         assertEquals(5, treeApi.weight(tree));
     }
 
     @Test
-    void numberOfLeafs() {
+    public void numberOfLeafs() {
         assertEquals(3, treeApi.numberOfLeafs(tree));
     }
 
     @Test
-    void occurrences() {
+    public void occurrences() {
         assertEquals(2, treeApi.occurrences(tree, 11));
         assertEquals(1, treeApi.occurrences(tree, 1));
         assertEquals(0, treeApi.occurrences(tree, 20));
     }
 
     @Test
-    void elementPerLevel() {
+    public void elementPerLevel() {
         assertEquals(1, treeApi.elementPerLevel(tree, 0));
         assertEquals(2, treeApi.elementPerLevel(tree, 1));
 
     }
 
     @Test
-    void height() {
+    public void height() {
         assertEquals(2, treeApi.height(tree));
     }
 
     @Test
-    void elementSum() {
+    public void elementSum() {
         assertEquals(63, treeApi.elementSum(tree));
     }
 
     @Test
-    void threeDividersElementSum() {
+    public void threeDividersElementSum() {
         assertEquals(15, treeApi.threeDividersElementSum(tree));
     }
 
     @Test
-    void areEquals() {
+    public void areEquals() {
         assertEquals(true, treeApi.areEquals(tree,tree2));
     }
 
     @Test
-    void areIsomorphic() {
+    public void areIsomorphic() {
         assertEquals(true, treeApi.areIsomorphic(tree,tree3));
     }
 
     @Test
-    void areSimilar() {
+    public void areSimilar() {
         assertEquals(true, treeApi.areSimilar(tree4,tree5));
     }
 
     @Test
-    void isComplete() {
+    public void isComplete() {
         assertEquals(true, treeApi.isComplete(tree6));
-        assertEquals(false, treeApi.isComplete(tree));
     }
 
     @Test
-    void isFull() {
+    public void isFull() {
         assertEquals(true, treeApi.isFull(tree6));
         assertEquals(false, treeApi.isFull(tree7));
     }
 
     @Test
-    void isStable() {
+    public void isStable() {
         assertEquals(true, treeApi.isStable(tree8));
     }
 
     @Test
-    void itsInside() {
+    public void itsInside() {
         assertEquals(true, treeApi.itsInside(tree, tree9Left));
     }
 
     @Test
-    void frontierList() {
+    public void frontierList() {
         ArrayList<Integer> array = new ArrayList<>();
         array.add(15);
         array.add(11);

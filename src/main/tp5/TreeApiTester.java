@@ -13,13 +13,13 @@ public class TreeApiTester {
         System.out.println("Inorden: ");
         treeApi.inorden(tree);
 
-        System.out.println("Postorder: ");
+        System.out.println("\nPostorder: ");
         treeApi.postorder(tree);
 
-        System.out.println("Preorder: ");
+        System.out.println("\nPreorder: ");
         treeApi.preorder(tree);
 
-        System.out.println("By levels: ");
-        treeApi.byLevel(tree);
+        System.out.println("\nBy levels: ");
+        treeApi.byLevels(tree);
     }
 }
