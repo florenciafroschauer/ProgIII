@@ -1,9 +1,11 @@
 package tp5;
 
-import exercise.DynamicList;
 import exercise.DynamicQueue;
-
 import java.util.ArrayList;
+
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
+ */
 
 public class TreeApi<T> {
 
@@ -54,7 +56,6 @@ public class TreeApi<T> {
      */
     public int height(BinaryTree<T> tree) {
         if (tree.isEmpty()) return -1;
-
         else return 1 + Math.max(height(tree.getRight()), height(tree.getLeft()));
     }
 
@@ -71,9 +72,9 @@ public class TreeApi<T> {
     public int threeDividersElementSum(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
             if ((Integer) tree.getRoot() % 3 == 0) {
-                return (Integer) tree.getRoot() + threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
+                return (Integer) tree.getRoot() + threeDividersElementSum(tree.getLeft())
+                        + threeDividersElementSum(tree.getRight());
             } else return threeDividersElementSum(tree.getLeft()) + threeDividersElementSum(tree.getRight());
-
         }
         return 0;
     }
@@ -97,7 +98,8 @@ public class TreeApi<T> {
         if (tree1.isEmpty() && tree2.isEmpty()) {
             return true;
         } else {
-            return areIsomorphic(tree1.getRight(), tree2.getRight()) && areIsomorphic(tree1.getLeft(), tree2.getLeft());
+            return areIsomorphic(tree1.getRight(), tree2.getRight())
+                    && areIsomorphic(tree1.getLeft(), tree2.getLeft());
         }
     }
 
@@ -106,21 +108,22 @@ public class TreeApi<T> {
      */
     public boolean areSimilar(BinaryTree<T> tree1, BinaryTree<T> tree2) {
         if (occurrences(tree2, tree1.getRoot()) == 1) {
-            return occurrences(tree2, tree1.getLeft().getRoot()) == 1 &&  occurrences(tree2, tree1.getRight().getRoot()) == 1;
-        }else return false;
+            return occurrences(tree2, tree1.getLeft().getRoot()) == 1
+                    && occurrences(tree2, tree1.getRight().getRoot()) == 1;
+        } else return false;
     }
 
     /**
      * Indica si un árbol binario es completo
      */
     public boolean isComplete(BinaryTree<T> tree) {
-        if(tree.isEmpty()){
+        if (tree.isEmpty()) {
             return false;
         }
-        else if((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())) {
+        else if ((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())) {
             return true;
         }
-        else if((tree.getLeft().isEmpty()) || (tree.getRight().isEmpty())) {
+        else if ((tree.getLeft().isEmpty()) || (tree.getRight().isEmpty())) {
             return false;
         }
         return isComplete(tree.getLeft()) && isComplete(tree.getRight());
@@ -142,19 +145,20 @@ public class TreeApi<T> {
     }
 
     /**
-     * Un árbol de valores enteros es estable si es
-     * vacío, consta de un único elemento o para todo elemento de la estructura su padre es mayor.
+     * Un árbol de valores enteros es estable si es vacío, consta de un único elemento o
+     * para todo metodo  para todo elemento de la estructura su padre es mayor.
      */
     public boolean isStable(BinaryTree<T> tree) {
-        if(tree.isEmpty() || tree.getLeft().isEmpty() && tree.getRight().isEmpty()){
+        if (tree.isEmpty() || tree.getLeft().isEmpty() && tree.getRight().isEmpty()) {
             return true;
         }
-        if((Integer)tree.getRoot() < (Integer)tree.getRight().getRoot() || (Integer)tree.getRoot() < (Integer)tree.getLeft().getRoot()){
+        if ((Integer)tree.getRoot() < (Integer)tree.getRight().getRoot()
+                || (Integer)tree.getRoot() < (Integer)tree.getLeft().getRoot()) {
             return false;
         }
+
         isStable(tree.getRight());
         isStable(tree.getLeft());
-
         return true;
     }
 
@@ -169,87 +173,88 @@ public class TreeApi<T> {
         return itsInside(tree1.getLeft(), tree2) || itsInside(tree1.getRight(), tree2);
     }
 
-    /* Se define frontera de un árbol binario, el conjunto formado por los elementos almacenados en las hojas */
+    /**
+     * Se define frontera de un árbol binario, el conjunto formado por los elementos almacenados en las hojas
+     */
     public void showBorder(BinaryTree<T> tree) {
         if (tree.isEmpty()) return;
 
         if (tree.getLeft().isEmpty() && tree.getRight().isEmpty()) {
             System.out.println(tree.getRoot());
-        }else{
+        } else {
             showBorder(tree.getLeft());
             showBorder(tree.getRight());
         }
     }
 
+    /**
+     * Devuelve un ArrayList de la frontera de un arbol
+     */
     public ArrayList<T> frontierList(BinaryTree<T> tree) {
         ArrayList<T> frontier = new ArrayList<>();
         if (tree.isEmpty()) {
             return frontier;
         }
+
         if ((!tree.getLeft().isEmpty() || (!tree.getRight().isEmpty()))) {
             ArrayList<T> frontier1 = new ArrayList<>();
             frontier1.addAll(frontierList(tree.getRight()));
             frontier1.addAll(frontierList(tree.getLeft()));
             return frontier1;
         }
-        if((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())){
+
+        if ((tree.getLeft().isEmpty()) && (tree.getRight().isEmpty())){
              frontier.add(tree.getRoot());
         }
         return frontier;
     }
 
-
-    public void inorden(BinaryTree<T> tree) {
+    public void inorder(BinaryTree<T> tree) {
         if (!tree.isEmpty()) {
-            inorden(tree.getLeft());
-            System.out.print(tree.getRoot()+ " ");
-            inorden(tree.getRight());
+            inorder(tree.getLeft());
+            System.out.print(tree.getRoot() + " ");
+            inorder(tree.getRight());
         }
     }
 
-
-    public void byLevels (BinaryTree a){
-        DynamicQueue<BinaryTree> q = new DynamicQueue();
-        q.enqueue(a);
-        while (!q.isEmpty()){
-            a = q.dequeue();
-            System.out.print(a.getRoot() + " ");
-            if(!a.getLeft().isEmpty()){
-                q.enqueue(a.getLeft());
-            }
-            if(!a.getRight().isEmpty()){
-                q.enqueue(a.getRight());
-            }
-        }
-    }
-
-    public void postorder(BinaryTree<T> tree){
+    public void postorder(BinaryTree<T> tree) {
         if (tree.isEmpty())
             return;
 
         postorder(tree.getLeft());
-
-        // then recur on right subtree
         postorder(tree.getRight());
-
         System.out.print(tree.getRoot() + " ");
     }
-
 
     public void preorder(BinaryTree<T> tree) {
         if (tree.isEmpty())
             return;
 
         System.out.print(tree.getRoot() + " ");
-
         preorder(tree.getLeft());
-
         preorder(tree.getRight());
     }
 
-    public int size(BinaryTree<T> a) {
+    public void byLevels (BinaryTree<T> tree) {
+        DynamicQueue<BinaryTree> q = new DynamicQueue();
+        q.enqueue(tree);
+
+        while (!q.isEmpty()) {
+            tree = q.dequeue();
+            System.out.print(tree.getRoot() + " ");
+
+            if (!tree.getLeft().isEmpty()) {
+                q.enqueue(tree.getLeft());
+            }
+
+            if (!tree.getRight().isEmpty()) {
+                q.enqueue(tree.getRight());
+            }
+        }
+    }
+
+    private int size(BinaryTree<T> a) {
         if (a.isEmpty()) return 0;
         else return 1 + size(a.getLeft()) + size(a.getRight());
     }
-
 }

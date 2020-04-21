@@ -1,15 +1,13 @@
 package tp5;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author Agustin Augurusa
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
  */
+
 public class TreeApiTest {
 
     TreeApi<Integer> treeApi = new TreeApi();
@@ -56,16 +54,6 @@ public class TreeApiTest {
 
     BinaryTree<Integer> tree9Left = new BinaryTree<>(11, treeLeftLeft, treeLeftRight);
 
-    //BinaryTree<Integer> treeLeftLeft = new BinaryTree<>(25);
-    //BinaryTree<Integer> treeLeftRight = new BinaryTree<>(11);
-    //BinaryTree<Integer> treeRightRight= new BinaryTree<>(25);
-    //BinaryTree<Integer> treeRight = new BinaryTree<>(15,new BinaryTree<>(),treeRightRight);
-    //BinaryTree<Integer> treeLeft = new BinaryTree<>(11, treeLeftLeft, treeLeftRight);
-    //BinaryTree<Integer> tree = new BinaryTree<> (1, treeLeft, treeRight);
-
-
-
-
     @Test
     public void weight() {
         assertEquals(5, treeApi.weight(tree));
@@ -87,7 +75,6 @@ public class TreeApiTest {
     public void elementPerLevel() {
         assertEquals(1, treeApi.elementPerLevel(tree, 0));
         assertEquals(2, treeApi.elementPerLevel(tree, 1));
-
     }
 
     @Test
@@ -107,17 +94,17 @@ public class TreeApiTest {
 
     @Test
     public void areEquals() {
-        assertEquals(true, treeApi.areEquals(tree,tree2));
+        assertEquals(true, treeApi.areEquals(tree, tree2));
     }
 
     @Test
     public void areIsomorphic() {
-        assertEquals(true, treeApi.areIsomorphic(tree,tree3));
+        assertEquals(true, treeApi.areIsomorphic(tree, tree3));
     }
 
     @Test
     public void areSimilar() {
-        assertEquals(true, treeApi.areSimilar(tree4,tree5));
+        assertEquals(true, treeApi.areSimilar(tree4, tree5));
     }
 
     @Test

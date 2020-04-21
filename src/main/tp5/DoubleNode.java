@@ -1,5 +1,9 @@
 package tp5;
 
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
+ */
+
 public class DoubleNode<T> {
     DoubleNode <T> right, left;
     T data;

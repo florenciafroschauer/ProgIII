@@ -1,5 +1,9 @@
 package tp5;
 
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
+ */
+
 public class TreeApiTester {
     public static void main(String[] args) {
         TreeApi<Integer> treeApi = new TreeApi();
@@ -11,7 +15,7 @@ public class TreeApiTester {
         BinaryTree<Integer> tree = new BinaryTree<> (1, treeLeft, treeRight);
 
         System.out.println("Inorden: ");
-        treeApi.inorden(tree);
+        treeApi.inorder(tree);
 
         System.out.println("\nPostorder: ");
         treeApi.postorder(tree);
