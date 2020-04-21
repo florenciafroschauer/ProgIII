@@ -11,25 +11,27 @@ public class BinaryTree<T> {
         root = new DoubleNode <T>(o);
     }
 
-    public BinaryTree(T o, BinaryTree<T> tleft, BinaryTree<T> tright){
-        root = new DoubleNode<T>(o,tleft.root, tright.root);
+    public BinaryTree(T o, BinaryTree<T> left, BinaryTree<T> right){
+        root = new DoubleNode<T>(o,left.root, right.root);
     }
 
     public boolean isEmpty(){
         return root == null;
     }
+
     public T getRoot(){
-        return root.dato;
-    }
-    public BinaryTree<T> getLeft(){
-        BinaryTree<T> t = new BinaryTree<T>();
-        t.root = root.left;
-        return t;
-    }
-    public BinaryTree<T> getRight(){
-        BinaryTree<T> t = new BinaryTree<T>();
-        t.root = root.right;
-        return t;
+        return root.data;
     }
 
+    public BinaryTree<T> getLeft() {
+        BinaryTree<T> temp = new BinaryTree<T>();
+        temp.root = root.left;
+        return temp;
+    }
+
+    public BinaryTree<T> getRight() {
+        BinaryTree<T> temp = new BinaryTree<T>();
+        temp.root = root.right;
+        return temp;
+    }
 }
