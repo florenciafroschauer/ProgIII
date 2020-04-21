@@ -1,36 +1,85 @@
 package exercise;
 
 public class DynamicQueue<T> implements QueueInterface<T> {
-    private Node<T> data;
+
+    private Node<T> front;
+    private Node<T> back;
+    private int amount;
+    private int size;
+
+    public DynamicQueue(int size){
+        this.size  = size;
+        this.amount = 0;
+        front = null;
+        back = null;
+    }
+
+    public DynamicQueue() {
+        this.size = 1000000000;
+        this.amount = 0;
+        front = null;
+        back = null;
+    }
 
 
     @Override
-    public void enqueue(T element) {
-
+    public void enqueue(T t) {
+        Node newNode = new Node(t);
+        newNode.next = null;
+        if (amount < size){
+            if (isEmpty()){
+                front = newNode;
+                back = newNode;
+            }
+            else{
+                back.next = newNode;
+                back = newNode;
+            }
+            amount++;
+        }
+        else{
+            throw new IllegalStateException("Queue is already full.");
+        }
     }
 
     @Override
     public T dequeue() {
-        return null;
+        if (!isEmpty()){
+            T data = front.data;
+            if (front == back){
+                front = null;
+                back = null;
+            }
+            else{
+                front = front.next;
+            }
+            amount--;
+            return data;
+        }
+        else{
+            throw new RuntimeException("Cannot remove elements from empty queue.");
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return amount == 0;
     }
 
     @Override
     public int length() {
-        return 0;
+        return amount;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public void empty() {
-
+        front = null;
+        back = null;
+        amount = 0;
     }
 }
