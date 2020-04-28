@@ -32,7 +32,7 @@ public class BinarySearchTree<T> {
         return getMax(root).data;
     }
 
-    // precondicion: elemnto a buscar pertenece al arbol
+    // precondicion: elemento a buscar pertenece al arbol
     public T search(Comparable<T> x) {
         return search(root, x).data;
     }
@@ -69,10 +69,8 @@ public class BinarySearchTree<T> {
 
     // METODOS PRIVADOS
     private DoubleNode<T> getMax(DoubleNode <T> t) {
-        if (t.right == null)
-            return t;
-        else
-            return getMax(t.right);
+        if (t.right == null) return t;
+        else return getMax(t.right);
     }
 
     private DoubleNode<T> getMin(DoubleNode <T> t) {
@@ -83,23 +81,16 @@ public class BinarySearchTree<T> {
     }
 
     private DoubleNode <T> search(DoubleNode <T> t, Comparable<T> x) {
-        if (x.compareTo(t.data) == 0)
-            return t;
-        else if (x.compareTo(t.data) < 0)
-            return search(t.left, x);
-        else
-            return search(t.right, x);
+        if (x.compareTo(t.data) == 0) return t;
+        else if (x.compareTo(t.data) < 0) return search(t.left, x);
+        else return search(t.right, x);
     }
 
     private boolean exists(DoubleNode <T> t, Comparable<T> x) {
-        if (t == null)
-            return false;
-        if (x.compareTo(t.data) == 0)
-            return true;
-        else if (x.compareTo(t.data) < 0)
-            return exists(t.left, x);
-        else
-            return exists(t.right, x);
+        if (t == null) return false;
+        if (x.compareTo(t.data) == 0) return true;
+        else if (x.compareTo(t.data) < 0) return exists(t.left, x);
+        else return exists(t.right, x);
     }
 
 
@@ -109,10 +100,8 @@ public class BinarySearchTree<T> {
             t.data = (T) x;
         }
 
-        else if (x.compareTo(t.data) < 0)
-            t.left = insert(t.left, x);
-        else
-            t.right = insert(t.right, x);
+        else if (x.compareTo(t.data) < 0) t.left = insert(t.left, x);
+        else t.right = insert(t.right, x);
         return t;
     }
 
