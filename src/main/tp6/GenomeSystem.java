@@ -20,9 +20,10 @@ public class GenomeSystem {
         genomeTree.delete(genome);
     }
 
-    public void get(Genome genome){
-        genomeTree.search(genome);
+    public Genome get(Genome genome){
+        return genomeTree.search(genome);
     }
+
 
     public void printDatabase(){
         printDatabase(genomeTree);
