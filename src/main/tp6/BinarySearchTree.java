@@ -12,55 +12,54 @@ public class BinarySearchTree<T> {
         root = null;
     }
 
-    // precondicion: elemento a insertar no pertenece al árbol
+
     public void insert(Comparable <T> x) {
+        if(exists(x)) throw new RuntimeException("Element is already in the tree");
         root = insert(root, x);
     }
 
-    // precondicion: elemento a eliminar pertenece al árbol
     public void delete(Comparable <T> x) {
+        if(!exists(x)) throw new RuntimeException("Element is not in the tree");
         root = delete(root, x);
     }
 
-    // precondicion: árbol distinto de vacío
     public T getMin() {
+        if(isEmpty()) throw new RuntimeException("Tree is empty");
         return getMin(root).data;
     }
 
-    // precondicion: árbol distinto de vacío
     public T getMax() {
+        if(isEmpty()) throw new RuntimeException("Tree is empty");
         return getMax(root).data;
     }
 
-    // precondicion: elemento a buscar pertenece al arbol
     public T search(Comparable<T> x) {
+        if(!exists(x)) throw new RuntimeException("Element is not in the tree");
         return search(root, x).data;
     }
 
-    // precondicion: -
     public boolean exists(Comparable<T> x) {
         return exists(root, x);
     }
 
-    // precondicion: -
     public boolean isEmpty() {
         return (root == null);
     }
 
-    // precondición: árbol distino de vacío
     public T getRoot() {
+        if(isEmpty()) throw new RuntimeException("Tree is empty");
         return root.data;
     }
 
-    // precondición: árbol distino de vacío
     public BinarySearchTree<T> getLeft() {
+        if(isEmpty()) throw new RuntimeException("Tree is empty");
         BinarySearchTree<T> t = new BinarySearchTree<T>();
         t.root = root.left;
         return t;
     }
 
-    // precondición: árbol distino de vacío
     public BinarySearchTree<T> getRight() {
+        if(isEmpty()) throw new RuntimeException("Tree is empty");
         BinarySearchTree<T> t = new BinarySearchTree<T>();
         t.root = root.right;
         return t;
