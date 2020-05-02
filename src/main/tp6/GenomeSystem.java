@@ -24,6 +24,27 @@ public class GenomeSystem {
         return genomeTree.search(genome);
     }
 
+    public void modifyType(String newType, Genome genome){
+        if (!genomeTree.exists(genome)){
+            throw new RuntimeException("The genome is not in the system");
+        }
+        genomeTree.search(genome).setType(newType);
+    }
+
+    public void modifyDescription(String newDescription, Genome genome){
+        if (!genomeTree.exists(genome)){
+            throw new RuntimeException("The genome is not in the system");
+        }
+        genomeTree.search(genome).setDescription(newDescription);
+    }
+
+    public void modifySize(int newSize, Genome genome){
+        if (!genomeTree.exists(genome)){
+            throw new RuntimeException("The genome is not in the system");
+        }
+        genomeTree.search(genome).setSize(newSize);
+    }
+
 
     public void printDatabase(){
         printDatabase(genomeTree);

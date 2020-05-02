@@ -24,5 +24,8 @@ public class GenomeSystemTester {
         Genome genome6 = genomeSystem.get(genome3);
         genome6.print();
 
+        genomeSystem.modifyDescription("The ultimate genome", genome2);
+        genomeSystem.get(genome2).print();
+
     }
 }
