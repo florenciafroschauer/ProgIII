@@ -3,32 +3,36 @@ package tp6;
 import java.util.ArrayList;
 
 public class GenomeSystem {
-    BinarySearchTree<Organism> database;
+    BinarySearchTree<Genome> genomeTree;
 
-    public GenomeSystem(ArrayList<Organism> list){
-        database = new BinarySearchTree<>();
-        for (Organism o: list) {
+    public GenomeSystem(ArrayList<Genome> list){
+        genomeTree = new BinarySearchTree<>();
+        for (Genome o: list) {
             add(o);
         }
     }
 
-    public void add(Organism organism){
-        database.insert(organism);
+    public void add(Genome genome){
+        genomeTree.insert(genome);
     }
 
-    public void remove(Organism organism){
-        database.delete(organism);
+    public void remove(Genome genome){
+        genomeTree.delete(genome);
     }
 
-    public void get(Organism organism){
-        database.search(organism);
+    public void get(Genome genome){
+        genomeTree.search(genome);
     }
 
     public void printDatabase(){
-        if (!database.isEmpty()){
-            printDatabase();
-            System.out.println(( database.getRoot() + " "));
-            printDatabase();
+        printDatabase(genomeTree);
+    }
+
+    private void printDatabase(BinarySearchTree<Genome> tree){
+        if (!tree.isEmpty()) {
+            printDatabase(tree.getLeft());
+            tree.getRoot().print();
+            printDatabase(tree.getRight());
         }
     }
 }
