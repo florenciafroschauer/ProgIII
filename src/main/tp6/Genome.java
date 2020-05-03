@@ -1,5 +1,9 @@
 package tp6;
 
+/**
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
+ */
+
 public class Genome implements Comparable<Genome> {
     private int key;
     private String type;
@@ -46,8 +50,8 @@ public class Genome implements Comparable<Genome> {
         return size;
     }
 
-    public void print(){
-        System.out.println("\nKey: " + key + "\n" +
+    public void print() {
+        System.out.println("\nKey: " + key  + "\n" +
                             "Type: " + type + "\n" +
                             "Size: " + size + "\n" +
                             "Description: " + description);
