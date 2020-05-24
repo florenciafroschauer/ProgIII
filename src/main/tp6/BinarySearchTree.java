@@ -1,5 +1,6 @@
 package tp6;
 
+import tp5.BinaryTree;
 import tp5.DoubleNode;
 /**
  * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
@@ -126,5 +127,10 @@ public class BinarySearchTree<T> {
         else
             t = t.right;
         return t;
+    }
+
+    public int height(BinarySearchTree tree) {
+        if (tree.isEmpty()) return -1;
+        else return 1 + Math.max(height(tree.getRight()), height(tree.getLeft()));
     }
 }
