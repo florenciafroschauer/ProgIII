@@ -1,22 +1,35 @@
 package tp7;
 
 import tp6.BinarySearchTree;
+
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+
 /**
  * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
  */
 
 public class BinaryTreeComparator {
-    private int[] array;
-    private int[] arrayTenPositions;
+    private Integer[] array;
+    private Integer[] arrayTenPositions;
+
     private AVLTree avlTree;
     private BinarySearchTree binarySearchTree;
-    private RBTree rbTree;
+    private RedBlackTree rbTree;
 
     public BinaryTreeComparator() {
         fillArray();
         fillArrayTenPositions();
     }
+
+    /*  A) Generar 1000 números random que pertenezcan al intervalo [1, 100000] y guardarlos
+            en un arreglo. Con ellos construir un árbol binario de búsqueda no balanceado, un
+            árbol AVL y un árbol rojinegro. Para estudiar la eficiencia de cada uno:
+
+        B) Calcular el tiempo que tarda la construcción de cada árbol.
+
+     */
 
     public void createSearchTree() {
         long startTime = System.nanoTime();
@@ -27,7 +40,7 @@ public class BinaryTreeComparator {
         }
 
         long stopTime = System.nanoTime();
-        System.out.println(stopTime - startTime);
+        System.out.println((stopTime - startTime)/1000);
     }
 
     public void createAvl() {
@@ -35,52 +48,91 @@ public class BinaryTreeComparator {
 
         this.avlTree = new AVLTree();
         for (int i = 0; i < array.length; i++) {
-            avlTree.insert(new Node(array[i]), array[i]);
+            avlTree.insert(array[i]);
         }
 
         long stopTime = System.nanoTime();
-        System.out.println(stopTime - startTime);
+        System.out.println((stopTime - startTime)/1000);
     }
 
     public void createRedBlack() {
         long startTime = System.nanoTime();
 
-        this.rbTree = new RBTree();
+        this.rbTree = new RedBlackTree();
         for (int i = 0; i < array.length; i++) {
-            rbTree.insert(rbTree, array[i]);
+            rbTree.insert(array[i]);
         }
 
         long stopTime = System.nanoTime();
-        System.out.println(stopTime - startTime);
+        System.out.println((stopTime - startTime)/1000);
     }
+
+     //C) Calcular la altura de cada uno:
 
     public int heightBST() {
         return binarySearchTree.height(binarySearchTree);
     }
 
     public int heightAvl() {
-        return avlTree.height(avlTree.root);
+        return avlTree.getHeight(avlTree);
     }
 
     public int heightRB() {
-        return rbTree.height(rbTree.root);
+        return rbTree.getHeight(rbTree);
     }
 
-    private void fillArray() {
-        int minimo = 1;
-        int max = 100000;
-        array = new int[1000];
-        Random rand = new Random();
 
-        for (int i = 0; i < array.length; i++) {
-            int randomNum = (int) ((Math.random() * ((max - minimo) + 1)) + minimo);
-            array[i] = randomNum;
+    /*  D) De los 1000 números elegir 10 (por ejemplo, el que ocupa la posición 0, 100, 200, etc),
+            buscarlos en cada árbol y contar la cantidad de intentos que realiza el algoritmo de
+            búsqueda hasta encontrarlos
+    */
+
+    public void occurencesBST(){
+        for (int i = 0; i < arrayTenPositions.length; i++) {
+            System.out.println("\n" + arrayTenPositions[i] + binarySearchTree.searchTries(arrayTenPositions[i]));
         }
     }
+
+    public void occurencesAVL(){
+        for (int i = 0; i < arrayTenPositions.length; i++) {
+            System.out.println("\n" + arrayTenPositions[i]  + avlTree.searchTries(avlTree, arrayTenPositions[i]));
+        }
+    }
+
+    public void occurencesRBT(){
+        for (int i = 0; i < arrayTenPositions.length; i++) {
+            System.out.println("\n" + arrayTenPositions[i]  + rbTree.searchTries(rbTree, arrayTenPositions[i]));
+        }
+    }
+
+
+
+
+
+    //PRIVATE METODS:
+        private static final Random gen = new Random();
+        private Integer[] fillArray() {
+
+            array = new Integer[1000];
+            Set<Integer> used = new HashSet<Integer>();
+
+            for (int i = 0; i < 1000; i++) {
+
+                int newRandom;
+                do {
+                    newRandom = gen.nextInt(100001);
+                } while (used.contains(newRandom));
+                array[i] = newRandom;
+                used.add(newRandom);
+            }
+            return array;
+        }
 
     private void fillArrayTenPositions() {
+        arrayTenPositions = new Integer[10];
         for (int i = 0; i < 10; i++) {
-            arrayTenPositions[i] = i*100;
+            arrayTenPositions[i] = array[i*100];
         }
     }
+
 }

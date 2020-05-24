@@ -4,124 +4,165 @@ package tp7;
  * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
  */
 
-public class AVLTree {
-    Node root;
+public class AVLTree<T> {
 
-    // A utility function to get the height of the tree
-    public int height(Node node) {
-        if (node == null)
+    private AVLNode<T> root;
+
+    private static class AVLNode<T> {
+
+        private T t;
+        private int height;
+        private AVLNode<T> left;
+        private AVLNode<T> right;
+
+        private AVLNode(T t) {
+            this.t = t;
+            height = 1;
+        }
+    }
+
+    public void insert(T value) {
+        root = insert(root, value);
+    }
+
+    private AVLNode<T> insert(AVLNode<T> n, T v) {
+        if (n == null) {
+            n = new AVLNode<T>(v);
+            return n;
+        } else {
+            int k = ((Comparable) n.t).compareTo(v);
+            if (k > 0) {
+                n.left = insert(n.left, v);
+            } else {
+                n.right = insert(n.right, v);
+            }
+            n.height = Math.max(height(n.left), height(n.right)) + 1;
+            int heightDiff = heightDiff(n);
+            if (heightDiff < -1) {
+                if (heightDiff(n.right) > 0) {
+                    n.right = rightRotate(n.right);
+                    return leftRotate(n);
+                } else {
+                    return leftRotate(n);
+                }
+            } else if (heightDiff > 1) {
+                if (heightDiff(n.left) < 0) {
+                    n.left = leftRotate(n.left);
+                    return rightRotate(n);
+                } else {
+                    return rightRotate(n);
+                }
+            } else ;
+
+        }
+        return n;
+    }
+
+    private AVLNode<T> leftRotate(AVLNode<T> n) {
+        AVLNode<T> r = n.right;
+        n.right = r.left;
+        r.left = n;
+        n.height = Math.max(height(n.left), height(n.right)) + 1;
+        r.height = Math.max(height(r.left), height(r.right)) + 1;
+        return r;
+    }
+
+    private AVLNode<T> rightRotate(AVLNode<T> n) {
+        AVLNode<T> r = n.left;
+        n.left = r.right;
+        r.right = n;
+        n.height = Math.max(height(n.left), height(n.right)) + 1;
+        r.height = Math.max(height(r.left), height(r.right)) + 1;
+        return r;
+    }
+
+    private int heightDiff(AVLNode<T> a) {
+        if (a == null) {
             return 0;
-
-        return node.height;
+        }
+        return height(a.left) - height(a.right);
     }
 
-    // A utility function to get maximum of two integers
-    public int max(int a, int b) {
-        return Math.max(a, b);
-    }
-
-    // A utility function to right rotate subtree rooted with y
-    // See the diagram given above.
-    public Node rightRotate(Node y) {
-        Node x = y.left;
-        Node T2 = x.right;
-
-        // Perform rotation
-        x.right = y;
-        y.left = T2;
-
-        // Update heights
-        y.height = max(height(y.left), height(y.right)) + 1;
-        x.height = max(height(x.left), height(x.right)) + 1;
-
-        // Return new root
-        return x;
-    }
-
-    // A utility function to left rotate subtree rooted with x
-    // See the diagram given above.
-    public Node leftRotate(Node x) {
-        Node y = x.right;
-        Node T2 = y.left;
-
-        // Perform rotation
-        y.left = x;
-        x.right = T2;
-
-        //  Update heights
-        x.height = max(height(x.left), height(x.right)) + 1;
-        y.height = max(height(y.left), height(y.right)) + 1;
-
-        // Return new root
-        return y;
-    }
-
-    // Get Balance factor of node N
-    public int getBalance(Node N) {
-        if (N == null)
+    public int height(AVLNode<T> a) {
+        if (a == null) {
             return 0;
-
-        return height(N.left) - height(N.right);
+        }
+        return a.height;
     }
 
-    public Node insert(Node node, int key) {
+    int tries = 1;
 
-        /* 1.  Perform the normal BST insertion */
-        if (node == null)
-            return (new Node(key));
-
-        if (key < node.key)
-            node.left = insert(node.left, key);
-        else if (key > node.key)
-            node.right = insert(node.right, key);
-        else // Duplicate keys not allowed
-            return node;
-
-        /* 2. Update height of this ancestor node */
-        node.height = 1 + max(height(node.left),
-                height(node.right));
-
-        /* 3. Get the balance factor of this ancestor
-              node to check whether this node became
-              unbalanced */
-        int balance = getBalance(node);
-
-        // If this node becomes unbalanced, then there
-        // are 4 cases Left Left Case
-        if (balance > 1 && key < node.left.key)
-            return rightRotate(node);
-
-        // Right Right Case
-        if (balance < -1 && key > node.right.key)
-            return leftRotate(node);
-
-        // Left Right Case
-        if (balance > 1 && key > node.left.key) {
-            node.left = leftRotate(node.left);
-            return rightRotate(node);
-        }
-
-        // Right Left Case
-        if (balance < -1 && key < node.right.key) {
-            node.right = rightRotate(node.right);
-            return leftRotate(node);
-        }
-
-        /* return the (unchanged) node pointer */
-        return node;
-    }
-
-    // A utility function to print preorder traversal of the tree.
-    // The function also prints height of every node
-    public void preOrder(Node node) {
-        if (node != null) {
-            System.out.print(node.key + " ");
-            preOrder(node.left);
-            preOrder(node.right);
+    public int searchTries(AVLTree<T> a, Comparable<T> x) {
+        if (x.compareTo(a.getRoot()) == 0) {
+            System.out.println("Intentos AVLTree: " + tries);
+            tries = 0;
+            return 0;
+        } else if (x.compareTo(a.getRoot()) < 0) {
+            tries++;
+            return searchTries(a.getLeft(), x);
+        } else {
+            tries++;
+            return searchTries(a.getRight(), x);
         }
     }
 
-    public int getKey() {
-        return root.key;
+    public int getHeight(AVLTree<T> a) {
+        if (a.isEmpty()) {
+            return -1;
+        }
+        int leftChildHeight = getHeight(a.getLeft());
+        int rightChildHeight = getHeight(a.getRight());
+
+        if (leftChildHeight > rightChildHeight) {
+            return ++leftChildHeight;
+        }
+        return ++rightChildHeight;
     }
+
+    public AVLTree<T> getLeft() {
+        try {
+            if (isEmpty()) {
+                throw new RuntimeException(" Empty Tree");
+            }
+            AVLTree<T> t = new AVLTree<>();
+            t.root = root.left;
+            return t;
+        } catch (Exception e) {
+            System.out.println(" Empty Tree");
+        }
+        return null;
+    }
+
+    public AVLTree<T> getRight() {
+        try {
+            if (isEmpty()) {
+                throw new RuntimeException(" Empty Tree");
+            }
+            AVLTree<T> t = new AVLTree<>();
+            t.root = root.right;
+            return t;
+        } catch (Exception e) {
+            System.out.println(" Empty Tree");
+        }
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return (root == null);
+
+
+    }
+
+    public T getRoot() {
+        try {
+            if (isEmpty()) {
+                throw new RuntimeException(" Empty Tree");
+            }
+            return root.t;
+        } catch (Exception e) {
+            System.out.println(" Empty Tree");
+        } return null;
+    }
+
+
 }

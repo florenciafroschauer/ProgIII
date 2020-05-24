@@ -33,11 +33,6 @@ public class BinarySearchTree<T> {
         return getMax(root).data;
     }
 
-    public T search(Comparable<T> x) {
-        if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
-        return search(root, x).data;
-    }
-
     public boolean exists(Comparable<T> x) {
         return exists(root, x);
     }
@@ -76,12 +71,6 @@ public class BinarySearchTree<T> {
             return t;
         else
             return getMin(t.left);
-    }
-
-    private DoubleNode<T> search(DoubleNode <T> t, Comparable<T> x) {
-        if (x.compareTo(t.data) == 0) return t;
-        else if (x.compareTo(t.data) < 0) return search(t.left, x);
-        else return search(t.right, x);
     }
 
     private boolean exists(DoubleNode <T> t, Comparable<T> x) {
@@ -132,5 +121,39 @@ public class BinarySearchTree<T> {
     public int height(BinarySearchTree tree) {
         if (tree.isEmpty()) return -1;
         else return 1 + Math.max(height(tree.getRight()), height(tree.getLeft()));
+    }
+
+
+    public T search(Comparable<T> x) {
+        if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
+        return search(root, x).data;
+    }
+
+    private DoubleNode<T> search(DoubleNode <T> t, Comparable<T> x) {
+        if (x.compareTo(t.data) == 0) return t;
+        else if (x.compareTo(t.data) < 0) return search(t.left, x);
+        else return search(t.right, x);
+    }
+
+    int count = 1;
+    public int searchTries(Comparable<T> x) {
+        if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
+        return searchTries(root, x);
+    }
+
+    private int searchTries(DoubleNode <T> t, Comparable<T> x) {
+        if (x.compareTo(t.data) == 0){
+            System.out.println("Intentos BSTree: " + count);
+            count = 0;
+            return 0;
+        }
+        else if (x.compareTo(t.data) < 0){
+            count++;
+            return searchTries(t.left, x);
+        }else {
+            count++;
+            return searchTries(t.right, x);
+        }
+
     }
 }
