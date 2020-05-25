@@ -82,4 +82,8 @@ public class DynamicQueue<T> implements QueueInterface<T> {
         back = null;
         amount = 0;
     }
+
+    public int amount(){
+        return amount;
+    }
 }
