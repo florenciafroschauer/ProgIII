@@ -2,14 +2,11 @@ package tp7;
 
 import java.awt.*;
 import java.util.Optional;
-
-import static java.lang.Integer.max;
 /**
  * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
  */
 
 public class RedBlackTree {
-
     private Node root;
 
     private static class Node {
@@ -54,7 +51,7 @@ public class RedBlackTree {
 
     private Optional<Node> findSiblingNode(Node root) {
         Node parent = root.parent;
-        if(isLeftChild(root)) {
+        if (isLeftChild(root)) {
             return Optional.ofNullable(parent.right.isNullLeaf ? null : parent.right);
         } else {
             return Optional.ofNullable(parent.left.isNullLeaf ? null : parent.left);
@@ -64,21 +61,23 @@ public class RedBlackTree {
     private void rightRotate(Node root, boolean changeColor) {
         Node parent = root.parent;
         root.parent = parent.parent;
-        if(parent.parent != null) {
+        if (parent.parent != null) {
             if(parent.parent.right == parent) {
                 parent.parent.right = root;
             } else {
                 parent.parent.left = root;
             }
         }
+
         Node right = root.right;
         root.right = parent;
         parent.parent = root;
         parent.left = right;
-        if(right != null) {
+        if (right != null) {
             right.parent = parent;
         }
-        if(changeColor) {
+
+        if (changeColor) {
             root.color = Color.BLACK;
             parent.color = Color.RED;
         }
@@ -87,8 +86,8 @@ public class RedBlackTree {
     private void leftRotate(Node root, boolean changeColor) {
         Node parent = root.parent;
         root.parent = parent.parent;
-        if(parent.parent != null) {
-            if(parent.parent.right == parent) {
+        if (parent.parent != null) {
+            if (parent.parent.right == parent) {
                 parent.parent.right = root;
             } else {
                 parent.parent.left = root;
@@ -98,10 +97,11 @@ public class RedBlackTree {
         root.left = parent;
         parent.parent = root;
         parent.right = left;
-        if(left != null) {
+        if (left != null) {
             left.parent = parent;
         }
-        if(changeColor) {
+
+        if (changeColor) {
             root.color = Color.BLACK;
             parent.color = Color.RED;
         }
@@ -109,11 +109,7 @@ public class RedBlackTree {
 
     private boolean isLeftChild(Node root) {
         Node parent = root.parent;
-        if(parent.left == root) {
-            return true;
-        } else {
-            return false;
-        }
+        return parent.left == root;
     }
 
     public void insert(int value) {
@@ -121,10 +117,10 @@ public class RedBlackTree {
     }
 
     private Node insert(Node parent, Node root, int data) {
-        if(root  == null || root.isNullLeaf) {
+        if (root  == null || root.isNullLeaf) {
             //if parent is not null means tree is not empty
             //so create a red leaf node
-            if(parent != null) {
+            if (parent != null) {
                 return createRedNode(parent, data);
             } else { //otherwise create a black root node if tree is empty
                 return createBlackNode(data);
@@ -138,13 +134,13 @@ public class RedBlackTree {
         //if we go on left side then isLeft will be true
         //if we go on right side then isLeft will be false.
         boolean isLeft;
-        if(root.data > data) {
+        if (root.data > data) {
             Node left = insert(root, root.left, data);
             //if left becomes root parent means rotation
             //happened at lower level. So just return left
             //so that nodes at upper level can set their
             //child correctly
-            if(left == root.parent) {
+            if (left == root.parent) {
                 return left;
             }
             //set the left child returned to be left of root node
@@ -157,7 +153,7 @@ public class RedBlackTree {
             //happened at lower level. So just return right
             //so that nodes at upper level can set their
             //child correctly
-            if(right == root.parent) {
+            if (right == root.parent) {
                 return right;
             }
             //set the right child returned to be right of root node
@@ -166,17 +162,17 @@ public class RedBlackTree {
             isLeft = false;
         }
 
-        if(isLeft) {
+        if (isLeft) {
             //if we went to left side check to see Red-Red conflict
             //between root and its left child
-            if(root.color == Color.RED && root.left.color == Color.RED) {
+            if (root.color == Color.RED && root.left.color == Color.RED) {
                 //get the sibling of root. It is returning optional means
                 //sibling could be empty
                 Optional<Node> sibling = findSiblingNode(root);
                 //if sibling is empty or of BLACK color
-                if(!sibling.isPresent() || sibling.get().color == Color.BLACK) {
+                if (!sibling.isPresent() || sibling.get().color == Color.BLACK) {
                     //check if root is left child of its parent
-                    if(isLeftChild(root)) {
+                    if (isLeftChild(root)) {
                         //this creates left left situation. So do one right rotate
                         rightRotate(root, true);
                     } else {
@@ -202,17 +198,17 @@ public class RedBlackTree {
                     sibling.get().color = Color.BLACK;
                     //if parent's parent is not null means parent is not root.
                     //so change its color to RED.
-                    if(root.parent.parent != null) {
+                    if (root.parent.parent != null) {
                         root.parent.color = Color.RED;
                     }
                 }
             }
         } else {
             //this is mirror case of above. So same comments as above.
-            if(root.color == Color.RED && root.right.color == Color.RED) {
+            if (root.color == Color.RED && root.right.color == Color.RED) {
                 Optional<Node> sibling = findSiblingNode(root);
-                if(!sibling.isPresent() || sibling.get().color == Color.BLACK) {
-                    if(!isLeftChild(root)) {
+                if (!sibling.isPresent() || sibling.get().color == Color.BLACK) {
+                    if (!isLeftChild(root)) {
                         leftRotate(root, true);
                     } else {
                         leftRotate(root.right, false);
@@ -222,7 +218,7 @@ public class RedBlackTree {
                 } else {
                     root.color = Color.BLACK;
                     sibling.get().color = Color.BLACK;
-                    if(root.parent.parent != null) {
+                    if (root.parent.parent != null) {
                         root.parent.color = Color.RED;
                     }
                 }
@@ -231,31 +227,31 @@ public class RedBlackTree {
         return root;
     }
 
-    public int getHeight(RedBlackTree a){
-        if(a.isEmpty()){
+    public int getHeight(RedBlackTree a) {
+        if (a.isEmpty()) {
             return -1;
         }
         int leftChildHeight = getHeight(a.getLeft());
         int rightChildHeight = getHeight(a.getRight());
 
-        if(leftChildHeight > rightChildHeight){
+        if (leftChildHeight > rightChildHeight) {
             return ++leftChildHeight;
         }
         return ++rightChildHeight;
     }
 
     int tries = 1;
-    public int searchTries(RedBlackTree a, Comparable<Integer> x){
-        if (x.compareTo(a.getRoot())== 0) {
+    public int searchTries(RedBlackTree a, Comparable<Integer> x) {
+        if (x.compareTo(a.getRoot()) == 0) {
             System.out.println("Intentos RBTree: " + tries);
             tries = 0;
             return 0;
         }
-        else if (x.compareTo(a.getRoot())< 0) {
+        else if (x.compareTo(a.getRoot()) < 0) {
             tries++;
             return searchTries(a.getLeft(), x);
         }
-        else{
+        else {
             tries++;
             return searchTries(a.getRight(), x);
         }
@@ -276,7 +272,7 @@ public class RedBlackTree {
         return (root == null);
     }
 
-    public RedBlackTree getLeft(){
+    public RedBlackTree getLeft() {
         try {
             if (isEmpty()) {
                 throw new RuntimeException(" Empty Tree");
@@ -289,7 +285,7 @@ public class RedBlackTree {
         } return null;
     }
 
-    public RedBlackTree getRight(){
+    public RedBlackTree getRight() {
         try {
             if (isEmpty()) {
                 throw new RuntimeException(" Empty Tree");
@@ -301,6 +297,4 @@ public class RedBlackTree {
             System.out.println(" Empty Tree");
         } return null;
     }
-
-
 }

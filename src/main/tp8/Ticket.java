@@ -1,5 +1,9 @@
 package tp8;
 
+/**
+ *  @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
+
 public class Ticket {
     private int ticketNumber;
     private int timeInSeconds;

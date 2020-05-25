@@ -9,7 +9,6 @@ public class AVLTree<T> {
     private AVLNode<T> root;
 
     private static class AVLNode<T> {
-
         private T t;
         private int height;
         private AVLNode<T> left;
@@ -94,7 +93,7 @@ public class AVLTree<T> {
 
     public int searchTries(AVLTree<T> a, Comparable<T> x) {
         if (x.compareTo(a.getRoot()) == 0) {
-            System.out.println("Intentos AVLTree: " + tries);
+            System.out.println("Tries AVLTree: " + tries);
             tries = 0;
             return 0;
         } else if (x.compareTo(a.getRoot()) < 0) {
@@ -149,8 +148,6 @@ public class AVLTree<T> {
 
     public boolean isEmpty() {
         return (root == null);
-
-
     }
 
     public T getRoot() {
@@ -163,6 +160,4 @@ public class AVLTree<T> {
             System.out.println(" Empty Tree");
         } return null;
     }
-
-
 }

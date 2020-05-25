@@ -2,6 +2,9 @@ package tp8;
 
 import exercise.DynamicQueue;
 import exercise.DynamicStack;
+/**
+ *  @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
 
 public class Window {
     private int amount;
@@ -13,13 +16,14 @@ public class Window {
         tickets = new DynamicStack<>();
     }
 
-    public void servePassenger(){
+    public void servePassenger() {
         double num = (Math.random() * 1);
-        if (num > 0.5 && !passengers.isEmpty()){
+        if (num > 0.5 && !passengers.isEmpty()) {
             Passenger passenger = passengers.dequeue();
             amount += 100;
             tickets.push(new Ticket(passenger.getTimeInSeconds()));
         }
+
         DynamicQueue auxQueue = new DynamicQueue();
         for (int i = 0; i < passengers.amount(); i++) {
             Passenger auxPassenger = passengers.dequeue();
@@ -29,7 +33,7 @@ public class Window {
         passengers = auxQueue;
     }
 
-    public void addPassenger(Passenger passenger){
+    public void addPassenger(Passenger passenger) {
         passengers.enqueue(passenger);
     }
 
@@ -44,6 +48,4 @@ public class Window {
     public DynamicQueue<Passenger> getPassengers() {
         return passengers;
     }
-
 }
-

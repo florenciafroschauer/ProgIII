@@ -2,6 +2,9 @@ package tp8;
 
 import exercise.DynamicList;
 import exercise.DynamicStack;
+/**
+ *  @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer.
+ */
 
 public class Metrovias {
     private DynamicList<Window> windows;
@@ -15,7 +18,7 @@ public class Metrovias {
         }
     }
 
-    public void passengerArrival(){
+    public void passengerArrival() {
         for (int i = 0; i < 5; i++) {
             int num  = (int)(Math.random() * ((windows.size())));
             windows.goTo(num);
@@ -23,7 +26,7 @@ public class Metrovias {
         }
     }
 
-    public void servePassenger(){
+    public void servePassenger() {
         for (int i = 0; i < windows.size(); i++) {
             windows.goTo(i);
             windows.getActual().servePassenger();
@@ -31,11 +34,12 @@ public class Metrovias {
         }
     }
 
-    public float meanTime(){
+    public float meanTime() {
         int meanTime = 0;
         int counter = 0;
         DynamicStack<Ticket> auxStack = tickets;
-        while(!auxStack.isEmpty()){
+
+        while (!auxStack.isEmpty()) {
             meanTime += auxStack.peek().getTimeInSeconds();
             auxStack.pop();
             counter++;
@@ -43,7 +47,7 @@ public class Metrovias {
         return meanTime/counter;
     }
 
-    public int totalAmount(){
+    public int totalAmount() {
         int totalAmount = 0;
         for (int i = 0; i < windows.size(); i++) {
             windows.goTo(i);
@@ -52,7 +56,7 @@ public class Metrovias {
         return totalAmount;
     }
 
-    public void showStack(){
+    public void showStack() {
     }
 
     public DynamicList<Window> getWindows() {
@@ -63,4 +67,3 @@ public class Metrovias {
         return tickets;
     }
 }
-

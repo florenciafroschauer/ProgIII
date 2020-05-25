@@ -1,10 +1,9 @@
 package tp7;
 
-import tp6.BinarySearchTree;
-
 /**
- * @author Agustin Augurusa
+ * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
  */
+
 public class TesterBinaryTreeComparator {
     public static void main(String[] args) {
         BinaryTreeComparator binaryTreeComparator = new BinaryTreeComparator();
@@ -22,11 +21,9 @@ public class TesterBinaryTreeComparator {
         System.out.println("Height BST: " + binaryTreeComparator.heightBST());
 
 
-        binaryTreeComparator.occurencesAVL();
-
-        binaryTreeComparator.occurencesRBT();
-
-        binaryTreeComparator.occurencesBST();
+        binaryTreeComparator.searchTriesAVL();
+        binaryTreeComparator.searchTriesRBT();
+        binaryTreeComparator.searchTriesBST();
 
 
        /* for (int i = 0; i < 10; i++) {
@@ -39,9 +36,7 @@ public class TesterBinaryTreeComparator {
             System.out.println("Height AVL: " + binaryTreeComparator.heightAvl());
             System.out.println("Height RBT: " + binaryTreeComparator.heightRB());
             System.out.println("Height BST: " + binaryTreeComparator.heightBST());
-
-
-        }*/
-
+        }
+        */
     }
 }
