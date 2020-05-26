@@ -89,19 +89,22 @@ public class AVLTree<T> {
         return a.height;
     }
 
-    int tries = 1;
+    public int searchTries(Comparable<Integer> x) {
+        return searchTries(root, x);
+    }
 
-    public int searchTries(AVLTree<T> a, Comparable<T> x) {
-        if (x.compareTo(a.getRoot()) == 0) {
-            System.out.println("Tries AVLTree: " + tries);
+    int tries = 1;
+    public int searchTries(AVLNode t, Comparable<Integer> x) {
+        if (x.compareTo((int)t.t) == 0) {
+            int auxTries = tries;
             tries = 0;
-            return 0;
-        } else if (x.compareTo(a.getRoot()) < 0) {
+            return auxTries;
+        } else if (x.compareTo((int)t.t) < 0) {
             tries++;
-            return searchTries(a.getLeft(), x);
+            return searchTries(t.left, x);
         } else {
             tries++;
-            return searchTries(a.getRight(), x);
+            return searchTries(t.right, x);
         }
     }
 

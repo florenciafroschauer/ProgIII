@@ -240,20 +240,24 @@ public class RedBlackTree {
         return ++rightChildHeight;
     }
 
+    public int searchTries(Comparable<Integer> x) {
+        return searchTries(root, x);
+    }
+
     int tries = 1;
-    public int searchTries(RedBlackTree a, Comparable<Integer> x) {
-        if (x.compareTo(a.getRoot()) == 0) {
-            System.out.println("Intentos RBTree: " + tries);
+    private int searchTries(Node t,Comparable<Integer> x) {
+        if (x.compareTo(t.data) == 0) {
+            int auxTries = tries;
             tries = 0;
-            return 0;
+            return auxTries;
         }
-        else if (x.compareTo(a.getRoot()) < 0) {
+        else if (x.compareTo(t.data) < 0) {
             tries++;
-            return searchTries(a.getLeft(), x);
+            return searchTries(t.left, x);
         }
         else {
             tries++;
-            return searchTries(a.getRight(), x);
+            return searchTries(t.right, x);
         }
     }
 

@@ -1,6 +1,5 @@
 package tp6;
 
-import tp5.BinaryTree;
 import tp5.DoubleNode;
 /**
  * @author Agustin Augurusa, Juan Cruz De Lorenzo, Florencia Froschauer
@@ -135,23 +134,24 @@ public class BinarySearchTree<T> {
         else return search(t.right, x);
     }
 
-    int count = 1;
+
     public int searchTries(Comparable<T> x) {
         if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
         return searchTries(root, x);
     }
 
+    int tries = 1;
     private int searchTries(DoubleNode <T> t, Comparable<T> x) {
         if (x.compareTo(t.data) == 0){
-            System.out.println("Intentos BSTree: " + count);
-            count = 0;
-            return 0;
+            int auxTries = tries;
+            tries = 0;
+            return auxTries;
         }
         else if (x.compareTo(t.data) < 0){
-            count++;
+            tries++;
             return searchTries(t.left, x);
         }else {
-            count++;
+            tries++;
             return searchTries(t.right, x);
         }
 

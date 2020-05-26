@@ -1,6 +1,8 @@
 package tp7;
 
 import tp6.BinarySearchTree;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -20,7 +22,7 @@ public class BinaryTreeComparator {
         fillArrayTenPositions();
     }
 
-    /*  A) Generar 1000 números random que pertenezcan al intervalo [1, 100000] y guardarlos
+    /**  A) Generar 1000 números random que pertenezcan al intervalo [1, 100000] y guardarlos
             en un arreglo. Con ellos construir un árbol binario de búsqueda no balanceado, un
             árbol AVL y un árbol rojinegro. Para estudiar la eficiencia de cada uno:
 
@@ -80,42 +82,63 @@ public class BinaryTreeComparator {
         return rbTree.getHeight(rbTree);
     }
 
-    /*  D) De los 1000 números elegir 10 (por ejemplo, el que ocupa la posición 0, 100, 200, etc),
+    /**  D) De los 1000 números elegir 10 (por ejemplo, el que ocupa la posición 0, 100, 200, etc),
             buscarlos en cada árbol y contar la cantidad de intentos que realiza el algoritmo de
             búsqueda hasta encontrarlos
     */
 
     public void searchTriesBST() {
         for (Integer arrayTenPosition : arrayTenPositions) {
-            System.out.println("\n" + arrayTenPosition + binarySearchTree.searchTries(arrayTenPosition));
+            System.out.println("\nBS Tree Tries with nº " + arrayTenPosition + " :\n" +
+                    binarySearchTree.searchTries(arrayTenPosition));
         }
+        System.out.println("\nBST Mean: " + (double)searchTriesBSTAux()/10);
     }
 
     public void searchTriesAVL() {
         for (Integer arrayTenPosition : arrayTenPositions) {
-            System.out.println("\n" + arrayTenPosition + avlTree.searchTries(avlTree, arrayTenPosition));
+            System.out.println("\nAVL Tree Tries with nº " + arrayTenPosition + " :\n" +
+                    avlTree.searchTries(arrayTenPosition));
         }
+        System.out.println("\nAVL Mean: " + (double)searchTriesAVLAux()/10);
     }
 
     public void searchTriesRBT() {
         for (Integer arrayTenPosition : arrayTenPositions) {
-            System.out.println("\n" + arrayTenPosition + rbTree.searchTries(rbTree, arrayTenPosition));
+            System.out.println("\nRB Tree Tries with nº " + arrayTenPosition + " :\n" +
+                    rbTree.searchTries(arrayTenPosition));
         }
+        System.out.println("\nRBT Mean: " + (double)searchTriesRBTAux()/10);
+
+    }
+
+    public double[] searchTriesPlus(){
+        double meanBST = 0;
+        double meanAVL = 0;
+        double meanRBT = 0;
+        for (int i = 0; i < 10; i++) {
+            fillArrayTenPositions();
+            meanBST += searchTriesBSTAux();
+            meanAVL += searchTriesAVLAux();
+            meanRBT += searchTriesRBTAux();
+        }
+        double[] mean = {meanBST/100, meanAVL/100, meanRBT/100};
+        return mean;
     }
 
     //Private methods
-        private static final Random gen = new Random();
-        private Integer[] fillArray() {
+    private static final Random gen = new Random();
+    private Integer[] fillArray() {
 
-            array = new Integer[1000];
-            Set<Integer> used = new HashSet<Integer>();
+        array = new Integer[1000];
+        Set<Integer> used = new HashSet<Integer>();
 
-            for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
 
-                int newRandom;
-                do {
-                    newRandom = gen.nextInt(100001);
-                } while (used.contains(newRandom));
+            int newRandom;
+            do {
+                newRandom = gen.nextInt(100001);
+            } while (used.contains(newRandom));
                 array[i] = newRandom;
                 used.add(newRandom);
             }
@@ -125,7 +148,31 @@ public class BinaryTreeComparator {
     private void fillArrayTenPositions() {
         arrayTenPositions = new Integer[10];
         for (int i = 0; i < 10; i++) {
-            arrayTenPositions[i] = array[i*100];
+            arrayTenPositions[i] = array[(int)(Math.random() * ((1000 - 1)) + 1)];
         }
+    }
+
+    private int searchTriesBSTAux() {
+        int tries = 0;
+        for (Integer arrayTenPosition : arrayTenPositions) {
+            tries += binarySearchTree.searchTries(arrayTenPosition);
+        }
+        return tries;
+    }
+
+    private int searchTriesAVLAux() {
+        int tries = 0;
+        for (Integer arrayTenPosition : arrayTenPositions) {
+            tries += avlTree.searchTries(arrayTenPosition);
+        }
+        return tries;
+    }
+
+    private int searchTriesRBTAux() {
+        int tries = 0;
+        for (Integer arrayTenPosition : arrayTenPositions) {
+            tries += rbTree.searchTries(arrayTenPosition);
+        }
+        return tries;
     }
 }
