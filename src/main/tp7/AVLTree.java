@@ -5,7 +5,6 @@ package tp7;
  */
 
 public class AVLTree<T> {
-
     private AVLNode<T> root;
 
     private static class AVLNode<T> {
@@ -93,7 +92,7 @@ public class AVLTree<T> {
         return searchTries(root, x);
     }
 
-    int tries = 1;
+    private int tries = 1;
     public int searchTries(AVLNode t, Comparable<Integer> x) {
         if (x.compareTo((int)t.t) == 0) {
             int auxTries = tries;

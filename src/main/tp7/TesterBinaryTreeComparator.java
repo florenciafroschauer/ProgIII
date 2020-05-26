@@ -7,7 +7,6 @@ package tp7;
 public class TesterBinaryTreeComparator {
     public static void main(String[] args) {
         BinaryTreeComparator binaryTreeComparator = new BinaryTreeComparator();
-        int condition = 0;
 
         System.out.println("\nCreation Time AVL: ");
         binaryTreeComparator.createAvl();

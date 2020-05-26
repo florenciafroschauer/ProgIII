@@ -59,7 +59,6 @@ public class BinarySearchTree<T> {
         return t;
     }
 
-    // METODOS PRIVADOS
     private DoubleNode<T> getMax(DoubleNode <T> t) {
         if (t.right == null) return t;
         else return getMax(t.right);
@@ -122,7 +121,6 @@ public class BinarySearchTree<T> {
         else return 1 + Math.max(height(tree.getRight()), height(tree.getLeft()));
     }
 
-
     public T search(Comparable<T> x) {
         if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
         return search(root, x).data;
@@ -134,26 +132,24 @@ public class BinarySearchTree<T> {
         else return search(t.right, x);
     }
 
-
     public int searchTries(Comparable<T> x) {
         if (!exists(x)) throw new RuntimeException("Element is not in the tree.");
         return searchTries(root, x);
     }
 
-    int tries = 1;
+    private int tries = 1;
     private int searchTries(DoubleNode <T> t, Comparable<T> x) {
-        if (x.compareTo(t.data) == 0){
+        if (x.compareTo(t.data) == 0) {
             int auxTries = tries;
             tries = 0;
             return auxTries;
         }
-        else if (x.compareTo(t.data) < 0){
+        else if (x.compareTo(t.data) < 0) {
             tries++;
             return searchTries(t.left, x);
-        }else {
+        } else {
             tries++;
             return searchTries(t.right, x);
         }
-
     }
 }

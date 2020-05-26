@@ -1,8 +1,6 @@
 package tp7;
 
 import tp6.BinarySearchTree;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -92,6 +90,7 @@ public class BinaryTreeComparator {
             System.out.println("\nBS Tree Tries with nº " + arrayTenPosition + " :\n" +
                     binarySearchTree.searchTries(arrayTenPosition));
         }
+
         System.out.println("\nBST Mean: " + (double)searchTriesBSTAux()/10);
     }
 
@@ -100,6 +99,7 @@ public class BinaryTreeComparator {
             System.out.println("\nAVL Tree Tries with nº " + arrayTenPosition + " :\n" +
                     avlTree.searchTries(arrayTenPosition));
         }
+
         System.out.println("\nAVL Mean: " + (double)searchTriesAVLAux()/10);
     }
 
@@ -108,11 +108,12 @@ public class BinaryTreeComparator {
             System.out.println("\nRB Tree Tries with nº " + arrayTenPosition + " :\n" +
                     rbTree.searchTries(arrayTenPosition));
         }
+
         System.out.println("\nRBT Mean: " + (double)searchTriesRBTAux()/10);
 
     }
 
-    public double[] searchTriesPlus(){
+    public double[] searchTriesPlus() {
         double meanBST = 0;
         double meanAVL = 0;
         double meanRBT = 0;

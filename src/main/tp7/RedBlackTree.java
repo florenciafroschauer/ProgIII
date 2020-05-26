@@ -244,8 +244,8 @@ public class RedBlackTree {
         return searchTries(root, x);
     }
 
-    int tries = 1;
-    private int searchTries(Node t,Comparable<Integer> x) {
+    private int tries = 1;
+    private int searchTries(Node t, Comparable<Integer> x) {
         if (x.compareTo(t.data) == 0) {
             int auxTries = tries;
             tries = 0;
