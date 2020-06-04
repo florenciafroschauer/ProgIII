@@ -17,7 +17,11 @@ public class StaticQueue<T> implements QueueInterface<T> {
         if(capacity == amount) grow(data);
         incrementBack();
 
-        data[back-1] = element;
+        if (back == 0){
+            data[back] = element;
+        }else{
+            data[back-1] = element;
+        }
         amount++;
     }
 

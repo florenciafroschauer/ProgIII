@@ -3,6 +3,7 @@ package exercise;
 public class DynamicList<T> extends List<T> {
     private Node<T> head, window, sentinel;
     private int size;
+
     public DynamicList(){
         head = new Node<>();
         sentinel = new Node<>();
