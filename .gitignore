@@ -1,3 +1,4 @@
 /out
 .idea
 *.imlgit push -u origin master
+src/main/myPackage/
